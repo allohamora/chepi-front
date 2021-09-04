@@ -13,6 +13,8 @@
     "start": "next start",
     "lint": "eslint",
     "lint:fix": "npm run lint src test -- --fix",
+    "format": "prettier",
+    "format:fix": "prettier --write .",
     "test": "jest",
     "release": "standard-version",
     "release:minor": "standard-version --release-as minor",
@@ -63,6 +65,9 @@
     "*.{ts,tsx}": [
       "npm run lint -- --fix",
       "npm run test -- --bail --findRelatedTests"
+    ],
+    "*.{js,json,yml}": [
+      "npm run format -- --write"
     ]
   }
 }

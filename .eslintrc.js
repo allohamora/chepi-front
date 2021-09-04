@@ -4,17 +4,14 @@ module.exports = {
     project: 'tsconfig.json',
     sourceType: 'module',
   },
-  plugins: [
-    '@typescript-eslint/eslint-plugin',
-    'beautiful-sort'
-  ],
+  plugins: ['@typescript-eslint/eslint-plugin', 'beautiful-sort'],
   extends: [
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
     'airbnb',
     'airbnb-typescript',
-    "next", 
-    "next/core-web-vitals",
+    'next',
+    'next/core-web-vitals',
   ],
   root: true,
   env: {
@@ -33,9 +30,12 @@ module.exports = {
 
     'react/jsx-props-no-spreading': 'off',
 
-    'beautiful-sort/import': ['error', {
-      'special': ['react'], 
-      'order': ['special', 'namespace', 'default', 'defaultObj', 'obj', 'none']
-    }],
+    'beautiful-sort/import': [
+      'error',
+      {
+        special: ['react'],
+        order: ['special', 'namespace', 'default', 'defaultObj', 'obj', 'none'],
+      },
+    ],
   },
 };
