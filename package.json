@@ -1,7 +1,11 @@
 {
   "name": "chepi-front",
-  "version": "0.1.0",
+  "version": "0.0.0",
+  "description": "Frontend for chepi",
+  "author": "https://github.com/Allohamora",
   "private": true,
+  "license": "UNLICENSED",
+  "main": "",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -18,5 +22,14 @@
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2",
     "typescript": "4.4.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Allohamora/chepi-front.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Allohamora/chepi-front/issues"
+  },
+  "homepage": "https://github.com/Allohamora/chepi-front#readme"
 }
