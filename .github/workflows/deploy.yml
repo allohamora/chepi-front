@@ -1,0 +1,23 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy-pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login
+        uses: okteto/login@master
+        with:
+          token: ${{ secrets.OKTETO_TOKEN }}
+      
+      - name: Create namespace
+        uses: okteto/namespace@master
+
+      - name: Deploy pipeline
+        uses: okteto/pipeline@master
+        with:
+          name: chepi-front
