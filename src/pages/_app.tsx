@@ -1,5 +1,8 @@
 import Head from 'next/head';
 import type { AppProps } from 'next/app';
+import { ThemeProvider } from 'styled-components';
+import { theme } from 'src/style/theme';
+import 'antd/dist/antd.variable.min.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -20,7 +23,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="theme-color" content="#ffffff" />
       </Head>
 
-      <Component {...pageProps} />
+      <ThemeProvider theme={theme}>
+        <Component {...pageProps} />
+      </ThemeProvider>
     </>
   );
 }

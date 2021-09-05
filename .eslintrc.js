@@ -7,11 +7,11 @@ module.exports = {
   plugins: ['@typescript-eslint/eslint-plugin', 'beautiful-sort'],
   extends: [
     'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended',
     'airbnb',
     'airbnb-typescript',
     'next',
     'next/core-web-vitals',
+    'plugin:prettier/recommended',
   ],
   root: true,
   env: {
@@ -27,8 +27,11 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'warn',
     '@typescript-eslint/no-floating-promises': 'warn',
+    '@typescript-eslint/no-empty-interface': 'warn',
 
     'react/jsx-props-no-spreading': 'off',
+    'react/display-name': 'warn',
+    'import/prefer-default-export': 'off',
 
     'beautiful-sort/import': [
       'error',
