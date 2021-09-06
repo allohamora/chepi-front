@@ -28,6 +28,7 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'warn',
     '@typescript-eslint/no-floating-promises': 'warn',
     '@typescript-eslint/no-empty-interface': 'warn',
+    'max-classes-per-file': ['error', 2],
 
     'react/jsx-props-no-spreading': 'off',
     'react/display-name': 'warn',
