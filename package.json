@@ -13,6 +13,8 @@
     "start": "next start",
     "lint": "eslint",
     "lint:fix": "npm run lint src test -- --fix",
+    "csslint": "stylelint",
+    "csslint:fix": "npm run csslint \"**/*.tsx\" -- --fix",
     "format": "prettier",
     "format:fix": "prettier --write .",
     "test": "jest",
@@ -50,6 +52,10 @@
     "jest": "^27.1.0",
     "prettier": "^2.3.2",
     "standard-version": "^9.3.1",
+    "stylelint": "^13.13.1",
+    "stylelint-config-rational-order-fix": "^0.1.8",
+    "stylelint-config-standard": "^22.0.0",
+    "stylelint-order": "^4.1.0",
     "typescript": "4.4.2"
   },
   "repository": {
@@ -69,6 +75,9 @@
     "*.{ts,tsx}": [
       "npm run lint -- --fix",
       "npm run test -- --bail --findRelatedTests"
+    ],
+    "*.tsx": [
+      "npm run csslint -- --fix"
     ],
     "*.{js,json,yml,md}": [
       "npm run format -- --write"
