@@ -33,6 +33,8 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'react/display-name': 'warn',
     'import/prefer-default-export': 'off',
+    'react/require-default-props': 'off',
+    'react/no-array-index-key': 'warn',
 
     'beautiful-sort/import': [
       'error',

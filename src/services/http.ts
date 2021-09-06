@@ -68,7 +68,7 @@ abstract class RequestBuilder {
     return this;
   }
 
-  public jsonBody<B extends Record<string, unknown>>(body: B) {
+  public jsonBody<B>(body: B) {
     this.contentType('application/json');
     this.body(JSON.stringify(body));
     return this;
