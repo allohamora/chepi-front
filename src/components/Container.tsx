@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { media } from 'src/style/helpers';
 
 export const Container = styled.div`

@@ -22,23 +22,23 @@
     "release:major": "standard-version --release-as major"
   },
   "dependencies": {
+    "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
     "antd": "^4.17.0-alpha.0",
     "husky": "^7.0.2",
     "lint-staged": "^11.1.2",
     "next": "11.1.2",
     "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "styled-components": "^5.3.1"
+    "react-dom": "17.0.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
+    "@emotion/babel-plugin": "^11.3.0",
     "@types/jest": "^27.0.1",
     "@types/react": "17.0.19",
-    "@types/styled-components": "^5.1.14",
     "@typescript-eslint/eslint-plugin": "^4.30.0",
     "@typescript-eslint/parser": "^4.30.0",
-    "babel-plugin-styled-components": "^1.13.2",
     "eslint": "7.32.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-airbnb-typescript": "^14.0.0",

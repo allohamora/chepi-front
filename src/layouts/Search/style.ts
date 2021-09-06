@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { Typography, Divider as AntDivider } from 'antd';
 import { color, media } from 'src/style/helpers';
 
