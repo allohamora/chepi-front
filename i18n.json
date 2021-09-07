@@ -4,6 +4,6 @@
   "pages": {
     "*": ["cookie"],
     "/": ["search-layout"],
-    "/search/[country]/[city]": ["search-layout", "pizza-card"]
+    "/search/[country]/[city]": ["search-layout", "pizza-card", "search-view"]
   }
 }

@@ -1,0 +1,8 @@
+{
+  "pizza": {
+    "fetch": {
+      "error": "error during loading",
+      "loading": "loading"
+    }
+  }
+}
