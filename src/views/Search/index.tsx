@@ -48,6 +48,8 @@ export const Search: FC = () => {
           <PizzaCard key={pizza.id} pizza={pizza} />
         ))}
       </Row>
+
+      {data?.value.length === 0 && <Alert message={capitalize(t('pizza.results-not-found'))} type="info" showIcon />}
     </SearchLayout>
   );
 };
