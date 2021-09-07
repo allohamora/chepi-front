@@ -28,7 +28,7 @@ export const Search: FC = () => {
   if (isLoading) {
     return (
       <SearchLayout>
-        <Alert message={capitalize(t('pizza.fetch.loading'))} type="info" showIcon />
+        <Alert message={capitalize(`${t('pizza.fetch.loading')}...`)} type="info" showIcon />
       </SearchLayout>
     );
   }
