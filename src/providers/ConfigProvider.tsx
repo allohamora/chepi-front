@@ -38,10 +38,12 @@ export const ConfigProvider: FC = ({ children }) => {
 
   useEffect(() => {
     const userConfig = JSON.parse(localStorage.getItem('config') as string) ?? defaultConfig;
-    setConfig(userConfig);
+    setTimeout(() => setConfig(userConfig));
   }, []);
 
   useEffect(() => {
+    if (config === defaultConfig) return;
+
     localStorage.setItem('config', JSON.stringify(config));
   }, [config]);
 
@@ -55,7 +57,7 @@ export const ConfigProvider: FC = ({ children }) => {
     const date = new Date();
     const expireMs = 100 * 24 * 60 * 60 * 1000; // 100 days
     date.setTime(date.getTime() + expireMs);
-    document.cookie = `NEXT_LOCALE=${config.language};path=/`;
+    document.cookie = `NEXT_LOCALE=${config.language};expires=${date.toUTCString()};path=/`;
 
     router.push(router.asPath, router.asPath, { locale: config.language });
   }, [config.language]);
