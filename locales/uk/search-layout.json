@@ -1,0 +1,28 @@
+{
+  "search": {
+    "placeholder": "пошук"
+  },
+  "settings": {
+    "title": "налаштування",
+    "language": {
+      "title": "мова",
+      "options": {
+        "en": "англійська",
+        "ru": "російська",
+        "uk": "украінська"
+      }
+    },
+    "country": {
+      "title": "краіна",
+      "options": {
+        "ukraine": "Україна"
+      }
+    },
+    "city": {
+      "title": "місто",
+      "options": {
+        "chernivtsi": "Чернівці"
+      }
+    }
+  }
+}

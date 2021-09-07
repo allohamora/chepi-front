@@ -1,0 +1,9 @@
+{
+  "locales": ["en", "ru", "uk"],
+  "defaultLocale": "en",
+  "pages": {
+    "*": ["cookie"],
+    "/": ["search-layout"],
+    "/search/[country]/[city]": ["search-layout"]
+  }
+}
