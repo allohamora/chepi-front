@@ -49,6 +49,7 @@ export const StyledCard = styled(Card)`
   }
 
   .ant-card-meta-title {
+    white-space: normal;
     width: 100%;
   }
 `;

@@ -15,7 +15,7 @@ interface PizzaCardProps {
 }
 
 const { Meta } = Card;
-const { Text } = Typography;
+const { Paragraph } = Typography;
 
 export const PizzaCard: FC<PizzaCardProps> = ({ pizza, className }) => {
   const {
@@ -61,7 +61,7 @@ export const PizzaCard: FC<PizzaCardProps> = ({ pizza, className }) => {
         title={title}
         description={
           <>
-            <Text>{descripton}</Text>
+            <Paragraph>{capitalize(descripton)}</Paragraph>
             <Table bordered columns={columns} dataSource={data} pagination={false} />
           </>
         }
