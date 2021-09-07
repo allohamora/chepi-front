@@ -83,7 +83,7 @@ export const SearchLayout: FC = ({ children }) => {
   const optionsSelects = getOptionsSelects(config, t);
 
   useEffect(() => {
-    if (typeof query === 'string' && query.length > 0 && query.length === 0) {
+    if (typeof query === 'string' && query.length > 0) {
       setSearchQuery(query);
     }
   }, [query]);
