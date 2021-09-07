@@ -3,9 +3,10 @@ import { useQuery } from 'react-query';
 import { SearchLayout } from 'src/layouts/Search';
 import { keys } from 'src/lib/react-query';
 import { getPizzas } from 'src/services/pizza';
-import { Alert } from 'antd';
+import { Alert, Row } from 'antd';
 import { useConfig } from 'src/providers/ConfigProvider';
 import { useRouter } from 'next/dist/client/router';
+import { PizzaCard } from 'src/components/PizzaCard';
 
 export const Search: FC = () => {
   const {
@@ -34,5 +35,13 @@ export const Search: FC = () => {
     );
   }
 
-  return <SearchLayout>{JSON.stringify(data)}</SearchLayout>;
+  return (
+    <SearchLayout>
+      <Row justify="space-around" gutter={[16, 16]}>
+        {data?.value.map((pizza) => (
+          <PizzaCard key={pizza.id} pizza={pizza} />
+        ))}
+      </Row>
+    </SearchLayout>
+  );
 };

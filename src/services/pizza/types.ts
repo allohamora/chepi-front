@@ -16,6 +16,7 @@ export const supportedCities = ['chernivtsi'] as const;
 export type City = typeof supportedCities[number];
 
 interface BasePizza {
+  id: string;
   link: string; // http://pizza.com/buy-pizza/:id
   image: string; // http://pizza.com/image
   ingredients: Ingredient[]; // ['peper', 'pepperoni']

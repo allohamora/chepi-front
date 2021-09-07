@@ -1,7 +1,17 @@
 import { createContext, FC, useContext, useEffect, useState } from 'react';
+import enLocale from 'antd/lib/locale/en_US';
+import ruLocale from 'antd/lib/locale/ru_RU';
+import ukLocale from 'antd/lib/locale/uk_UA';
 import { useRouter } from 'next/dist/client/router';
 import { Pizza } from 'src/services/pizza/types';
 import { supportedCountries } from 'src/config/country';
+import { ConfigProvider as AntDesignConfigProvider } from 'antd';
+
+const langToLocale = {
+  en: enLocale,
+  ru: ruLocale,
+  uk: ukLocale,
+} as const;
 
 export interface Config {
   language: Pizza['lang'];
@@ -52,5 +62,9 @@ export const ConfigProvider: FC = ({ children }) => {
 
   const changeKey = (key: keyof Config, value: Config[typeof key]) => setConfig({ ...config, [key]: value });
 
-  return <ConfigContext.Provider value={{ config, changeKey }}>{children}</ConfigContext.Provider>;
+  return (
+    <ConfigContext.Provider value={{ config, changeKey }}>
+      <AntDesignConfigProvider locale={langToLocale[config.language]}>{children}</AntDesignConfigProvider>
+    </ConfigContext.Provider>
+  );
 };

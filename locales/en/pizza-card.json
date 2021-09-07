@@ -1,0 +1,11 @@
+{
+  "image": "image",
+  "description": "description",
+  "variants": "variants",
+  "size": "size",
+  "price": "price",
+  "weight": "weight",
+  "gram": "gram",
+  "grn": "grn",
+  "cm": "cm"
+}
