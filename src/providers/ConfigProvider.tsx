@@ -3,7 +3,7 @@ import enLocale from 'antd/lib/locale/en_US';
 import ruLocale from 'antd/lib/locale/ru_RU';
 import ukLocale from 'antd/lib/locale/uk_UA';
 import { useRouter } from 'next/dist/client/router';
-import { Pizza } from 'src/services/pizza/types';
+import { Lang, Pizza } from 'src/services/pizza/types';
 import { supportedCountries } from 'src/config/country';
 import { ConfigProvider as AntDesignConfigProvider } from 'antd';
 
@@ -20,7 +20,6 @@ export interface Config {
   showCookieAlert: boolean;
 }
 
-const defaultConfig: Config = { language: 'en', country: 'ukraine', city: 'chernivtsi', showCookieAlert: true };
 type ChangeKey = (key: keyof Config, value: Config[typeof key]) => void;
 
 interface Context {
@@ -35,8 +34,14 @@ export const useConfig = () => useContext(ConfigContext);
 const CONFIG_LS_KEY = 'config';
 
 export const ConfigProvider: FC = ({ children }) => {
-  const [config, setConfig] = useState(defaultConfig);
   const router = useRouter();
+  const defaultConfig: Config = {
+    language: router.locale as Lang,
+    country: 'ukraine',
+    city: 'chernivtsi',
+    showCookieAlert: true,
+  };
+  const [config, setConfig] = useState(defaultConfig);
 
   useEffect(() => {
     const userConfig = JSON.parse(localStorage.getItem(CONFIG_LS_KEY) as string) ?? defaultConfig;
