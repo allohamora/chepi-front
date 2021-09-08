@@ -32,19 +32,21 @@ const ConfigContext = createContext<Context>({} as Context);
 
 export const useConfig = () => useContext(ConfigContext);
 
+const CONFIG_LS_KEY = 'config';
+
 export const ConfigProvider: FC = ({ children }) => {
   const [config, setConfig] = useState(defaultConfig);
   const router = useRouter();
 
   useEffect(() => {
-    const userConfig = JSON.parse(localStorage.getItem('config') as string) ?? defaultConfig;
+    const userConfig = JSON.parse(localStorage.getItem(CONFIG_LS_KEY) as string) ?? defaultConfig;
     setTimeout(() => setConfig(userConfig));
   }, []);
 
   useEffect(() => {
     if (config === defaultConfig) return;
 
-    localStorage.setItem('config', JSON.stringify(config));
+    localStorage.setItem(CONFIG_LS_KEY, JSON.stringify(config));
   }, [config]);
 
   useEffect(() => {

@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { PushpinOutlined } from '@ant-design/icons';
 import { Card } from 'antd';
 import { color } from 'src/style/helpers';
 
@@ -52,4 +53,20 @@ export const StyledCard = styled(Card)`
     white-space: normal;
     width: 100%;
   }
+`;
+
+export const PushinIcon = styled(PushpinOutlined, { shouldForwardProp: (prop) => prop !== 'inCompareList' })<{
+  inCompareList: boolean;
+}>`
+  ${(p) =>
+    p.inCompareList &&
+    `
+    &&& {
+      color: var(--ant-success-color);
+
+      :hover {
+        color: var(--ant-error-color);
+      }
+    }
+  `}
 `;

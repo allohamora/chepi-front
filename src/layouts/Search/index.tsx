@@ -77,6 +77,8 @@ export const SearchLayout: FC = ({ children }) => {
 
   const searchChangeHandler = (e: ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value);
 
+  const openComparison = () => router.push('/comparison');
+
   const openSettings = () => setSettingsVisible(true);
   const closeSettings = () => setSettingsVisible(false);
 
@@ -122,7 +124,7 @@ export const SearchLayout: FC = ({ children }) => {
           <NavCol xs={12} sm={{ offset: 2, span: 4 }}>
             <Row justify="end">
               <Space>
-                <Button>
+                <Button onClick={openComparison}>
                   <PushpinOutlined />
                 </Button>
                 <Button onClick={openSettings}>

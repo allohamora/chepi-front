@@ -3,6 +3,7 @@ import { QueryClient } from 'react-query';
 import { ReactQueryProvider } from './ReactQueryProvider';
 import { ThemeProvider } from './ThemeProvider';
 import { ConfigProvider } from './ConfigProvider';
+import { ComparisonProvider } from './ComparisonProvider';
 
 interface AppProvidersProps {
   queryClient?: QueryClient;
@@ -12,7 +13,9 @@ interface AppProvidersProps {
 export const AppProviders: FC<AppProvidersProps> = ({ children, queryClient, queryState }) => (
   <ConfigProvider>
     <ReactQueryProvider client={queryClient} state={queryState}>
-      <ThemeProvider>{children}</ThemeProvider>
+      <ThemeProvider>
+        <ComparisonProvider>{children}</ComparisonProvider>
+      </ThemeProvider>
     </ReactQueryProvider>
   </ConfigProvider>
 );

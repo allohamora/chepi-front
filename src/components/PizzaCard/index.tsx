@@ -3,9 +3,10 @@ import useTranslation from 'next-translate/useTranslation';
 import { Pizza } from 'src/services/pizza/types';
 import { Card, Typography, Table, Image } from 'antd';
 import { useConfig } from 'src/providers/ConfigProvider';
-import { PushpinOutlined, ShoppingOutlined } from '@ant-design/icons';
+import { ShoppingOutlined } from '@ant-design/icons';
 import { capitalize } from 'src/utils/string';
-import { StyledCard } from './style';
+import { useComparison } from 'src/providers/ComparisonProvider';
+import { StyledCard, PushinIcon } from './style';
 
 const CLICK_IGNORE = 'click-ignore';
 
@@ -21,6 +22,7 @@ export const PizzaCard: FC<PizzaCardProps> = ({ pizza, className }) => {
   const {
     config: { language },
   } = useConfig();
+  const { pizzasIds, addPizza, removePizzas } = useComparison();
   const { t } = useTranslation('pizza-card');
   const { image, variants } = pizza;
 
@@ -47,12 +49,25 @@ export const PizzaCard: FC<PizzaCardProps> = ({ pizza, className }) => {
 
   const data = variants.map((variant, i) => ({ key: i, ...variant }));
 
+  const togglePushin = (pizzaId: string) => () => {
+    if (pizzasIds[pizzaId]) {
+      return removePizzas(pizzaId);
+    }
+
+    return addPizza(pizzaId);
+  };
+
   return (
     <StyledCard
       className={className}
       cover={<Image alt={title} src={image} />}
       actions={[
-        <PushpinOutlined className={CLICK_IGNORE} key="pushin" />,
+        <PushinIcon
+          className={CLICK_IGNORE}
+          key="pushin"
+          onClick={togglePushin(pizza.id)}
+          inCompareList={pizzasIds[pizza.id]}
+        />,
         <ShoppingOutlined className={CLICK_IGNORE} key="shopping" onClick={() => window.open(pizza.link)} />,
       ]}
       hoverable
