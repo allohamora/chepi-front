@@ -4,28 +4,35 @@ import { useQuery } from 'react-query';
 import { SearchLayout } from 'src/layouts/Search';
 import { keys } from 'src/lib/react-query';
 import { getPizzas } from 'src/services/pizza';
-import { Alert, Row } from 'antd';
+import { Alert, Pagination, Row } from 'antd';
 import { useConfig } from 'src/providers/ConfigProvider';
 import { useRouter } from 'next/dist/client/router';
 import { PizzaCard } from 'src/components/PizzaCard';
 import { capitalize } from 'src/utils/string';
+import { PaginationContainer } from './style';
+
+const PIZZAS_PER_PAGE = 20;
 
 export const Search: FC = () => {
   const {
     config: { city, country },
   } = useConfig();
 
+  const router = useRouter();
   const {
-    query: { query = '' },
-  } = useRouter();
+    query: { query = '', page: pageQuery },
+  } = router;
+  const offset = !pageQuery ? 0 : PIZZAS_PER_PAGE * (Number(pageQuery) - 1);
 
-  const { isLoading, data, error } = useQuery([keys.pizzas, query], () =>
-    getPizzas({ city, country, query: query as string }),
+  const { isLoading, data, error } = useQuery(
+    [keys.pizzas, query, offset],
+    () => getPizzas({ city, country, query: query as string, offset, limit: PIZZAS_PER_PAGE }),
+    { keepPreviousData: true },
   );
 
   const { t } = useTranslation('search-view');
 
-  if (isLoading) {
+  if (isLoading || data === undefined) {
     return (
       <SearchLayout>
         <Alert message={capitalize(`${t('pizza.fetch.loading')}...`)} type="info" showIcon />
@@ -41,15 +48,39 @@ export const Search: FC = () => {
     );
   }
 
+  const { value, total } = data;
+
+  const paginatonChangeHandler = (page: number) => {
+    const finalPage = page === 1 ? undefined : page;
+
+    router.push({ query: { ...router.query, page: finalPage } });
+  };
+
   return (
     <SearchLayout>
-      <Row justify="space-around" gutter={[16, 16]}>
-        {data?.value.map((pizza) => (
-          <PizzaCard key={pizza.id} pizza={pizza} />
-        ))}
-      </Row>
+      {value.length > 0 && (
+        <>
+          <Row justify="space-around" gutter={[16, 16]}>
+            {value.map((pizza) => (
+              <PizzaCard key={pizza.id} pizza={pizza} />
+            ))}
+          </Row>
 
-      {data?.value.length === 0 && <Alert message={capitalize(t('pizza.results-not-found'))} type="info" showIcon />}
+          <PaginationContainer>
+            <Pagination
+              defaultCurrent={1}
+              total={total}
+              onChange={paginatonChangeHandler}
+              defaultPageSize={PIZZAS_PER_PAGE}
+              showQuickJumper={false}
+              showSizeChanger={false}
+              responsive
+            />
+          </PaginationContainer>
+        </>
+      )}
+
+      {value.length === 0 && <Alert message={capitalize(t('pizza.results-not-found'))} type="info" showIcon />}
     </SearchLayout>
   );
 };

@@ -10,7 +10,7 @@ interface GetPizzasOptions {
   city: Pizza['city'];
   country: Pizza['country'];
   limit?: number;
-  offst?: number;
+  offset?: number;
 }
 
 interface GetPizzasResponse {
