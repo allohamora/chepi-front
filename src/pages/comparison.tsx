@@ -1,6 +1,3 @@
-import { NextPage } from 'next';
-import { Comparison as ComparisonPageView } from 'src/views/Comparison';
+import { Comparison } from 'src/views/Comparison';
 
-const Home: NextPage = () => <ComparisonPageView />;
-
-export default Home;
+export default Comparison;

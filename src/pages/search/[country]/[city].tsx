@@ -1,14 +1,11 @@
-import React from 'react';
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
-import { Search as SearchView } from 'src/views/Search';
+import { GetStaticPaths, GetStaticProps } from 'next';
+import { Search } from 'src/views/Search';
 import { QueryClient } from 'react-query';
 import { keys } from 'src/lib/react-query';
 import { getPizzas } from 'src/services/pizza';
 import { dehydrate } from 'react-query/hydration';
 import { supportedCountriesVariants } from 'src/config/country';
 import { Pizza, supportedLangs } from 'src/services/pizza/types';
-
-const Search: NextPage = () => <SearchView />;
 
 interface Params {
   country: Pizza['country'];
