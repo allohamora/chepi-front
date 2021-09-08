@@ -54,6 +54,7 @@ export const ConfigProvider: FC = ({ children }) => {
   }, [config.country]);
 
   useEffect(() => {
+    if (router.locale === config.language) return;
     if (config === defaultConfig) return;
 
     const date = new Date();

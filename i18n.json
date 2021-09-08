@@ -2,9 +2,10 @@
   "locales": ["en", "ru", "uk"],
   "defaultLocale": "en",
   "pages": {
-    "*": ["cookie"],
-    "/": ["search-layout", "home"],
-    "/search/[country]/[city]": ["search-layout", "pizza-card", "search-view"],
-    "/comparison": ["search-layout", "comparison", "pizza-card"]
+    "*": ["search-layout", "cookie"],
+    "/": ["home"],
+    "/404": ["not-found"],
+    "/search/[country]/[city]": ["pizza-card", "search-view"],
+    "/comparison": ["comparison", "pizza-card"]
   }
 }
