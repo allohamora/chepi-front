@@ -5,14 +5,26 @@ import useTranslation from 'next-translate/useTranslation';
 import { Col, Row, Space, Input, Select, Button, Drawer, Typography } from 'antd';
 import { SettingFilled, PushpinOutlined } from '@ant-design/icons';
 import { image } from 'src/utils/path';
-import { Container } from 'src/components/Container';
 import { Config, useConfig } from 'src/providers/ConfigProvider';
 import { useRouter } from 'next/dist/client/router';
 import { Translate } from 'next-translate';
 import { capitalize } from 'src/utils/string';
 import { CookieAlert } from 'src/components/CookieAlert';
 import { supportedCountries } from 'src/config/country';
-import { Title, ImageContainer, Divider, HomeLink, BrandContainer, NavCol, BrandCol, OptionRow } from './style';
+import {
+  Layout,
+  Title,
+  ImageContainer,
+  Divider,
+  HomeLink,
+  BrandContainer,
+  NavCol,
+  BrandCol,
+  OptionRow,
+  Main,
+  Header,
+  Footer,
+} from './style';
 
 const { Text } = Typography;
 const { Search } = Input;
@@ -91,10 +103,10 @@ export const SearchLayout: FC = ({ children }) => {
   }, [query]);
 
   return (
-    <>
+    <Layout>
       <CookieAlert />
 
-      <Container>
+      <Header>
         <Row align="middle">
           <BrandCol sm={6} xs={12}>
             <BrandContainer>
@@ -134,7 +146,7 @@ export const SearchLayout: FC = ({ children }) => {
             </Row>
           </NavCol>
         </Row>
-      </Container>
+      </Header>
 
       <Drawer
         width="300"
@@ -160,7 +172,20 @@ export const SearchLayout: FC = ({ children }) => {
 
       <Divider />
 
-      <Container>{children}</Container>
-    </>
+      <Main>{children}</Main>
+
+      <Divider />
+
+      <Footer>
+        <Row justify="center">
+          <Text>
+            {capitalize(t('footer.created-by'))}{' '}
+            <a rel="noopener noreferrer" href="https://github.com/Allohamora" target="_blank">
+              Allohamora
+            </a>
+          </Text>
+        </Row>
+      </Footer>
+    </Layout>
   );
 };

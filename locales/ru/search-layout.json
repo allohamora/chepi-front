@@ -24,5 +24,8 @@
         "chernivtsi": "Черновцы"
       }
     }
+  },
+  "footer": {
+    "created-by": "сделал"
   }
 }

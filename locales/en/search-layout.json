@@ -24,5 +24,8 @@
         "chernivtsi": "Chernivtsi"
       }
     }
+  },
+  "footer": {
+    "created-by": "created by"
   }
 }

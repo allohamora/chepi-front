@@ -3,7 +3,7 @@
   "defaultLocale": "en",
   "pages": {
     "*": ["cookie"],
-    "/": ["search-layout"],
+    "/": ["search-layout", "home"],
     "/search/[country]/[city]": ["search-layout", "pizza-card", "search-view"],
     "/comparison": ["search-layout", "comparison", "pizza-card"]
   }

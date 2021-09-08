@@ -24,5 +24,8 @@
         "chernivtsi": "Чернівці"
       }
     }
+  },
+  "footer": {
+    "created-by": "створив"
   }
 }

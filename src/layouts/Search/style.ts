@@ -1,6 +1,21 @@
 import styled from '@emotion/styled';
 import { Typography, Divider as AntDivider, Col, Row } from 'antd';
+import { Container } from 'src/components/Container';
 import { color, media } from 'src/style/helpers';
+
+export const Header = styled(Container)``.withComponent('header');
+
+export const Main = styled(Container)`
+  flex-grow: 1;
+`.withComponent('main');
+
+export const Footer = styled(Container)``.withComponent('footer');
+
+export const Layout = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-flow: column wrap;
+`;
 
 export const Title = styled(Typography.Title)`
   && {
