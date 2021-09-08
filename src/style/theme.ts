@@ -1,5 +1,6 @@
 const colors = {
   primary: 'var(--ant-primary-6)',
+  white: '#ffffff',
 } as const;
 export type Color = keyof typeof colors;
 

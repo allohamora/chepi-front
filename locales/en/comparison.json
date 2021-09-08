@@ -1,0 +1,84 @@
+{
+  "comparison-empty": "nothing added for comparison",
+  "table": {
+    "delete": "delete",
+    "title": "title",
+    "image": "image",
+    "ingredients": "ingredients",
+    "price": "price",
+    "weight": "weight",
+    "size": "size",
+    "grn": "grn",
+    "gram": "gram",
+    "cm": "cm"
+  },
+  "ingredient": {
+    "pizzaBase": "pizza base",
+    "dough": "dough",
+
+    "sauce": "sauce",
+    "pestoSauce": "pesto sauce",
+    "tomatoOrCreamSauce": "tomato or cream sauce",
+    "tomatoSauce": "tomato sauce",
+    "homemadeTomatoSauce": "homemade tomato sauce",
+    "caesarSauce": "caesar sauce",
+    "greenSauce": "green sauce",
+    "creamSauce": "cream sauce",
+
+    "bacon": "bacon",
+    "ham": "ham",
+    "chicken": "chicken",
+    "bakedChickenFillet": "baked chicken fillet",
+    "chickenFillet": "chicken fillet",
+    "prosciutto": "prosciutto",
+    "mincedSalsa": "minced salsa",
+    "huntingSausages": "hunting sausages",
+    "salami": "salami",
+    "spicySalami": "spicy salami",
+    "piquantSalami": "piquant salami",
+
+    "cheese": "cheese",
+    "creamСheese": "cream cheese",
+    "mozzarellaFresco": "mozzarella fresco",
+    "mozzarella": "mozzarella",
+    "parmesan": "parmesan",
+    "feta": "feta",
+    "gorgonzola": "gorgonzola",
+    "radomer": "radomer",
+    "radometer": "radomer",
+
+    "salad": "salad",
+    "saladMix": "salad mix",
+
+    "herb": "herb",
+    "corn": "corn",
+    "grilledEggplant": "grilled eggplant",
+    "artichokes": "artichokes",
+    "pear": "pear",
+    "pineapple": "pineapple",
+    "olives": "olives",
+    "capers": "capers",
+    "basil": "basil",
+
+    "tomatoes": "tomatoes",
+    "cherryTomatoConfit": "cherry tomato confit",
+    "cherryTomatoes": "cherry tomatoes",
+
+    "pepper": "pepper",
+    "pepperoniPeppers": "pepperoni pepper",
+    "pepperoniPepper": "pepperoni pepper",
+    "chiliPeppers": "chili pepper",
+    "chiliPepper": "chili pepper",
+    "bellPepper": "bell pepper",
+
+    "mushrooms": "mushrooms",
+    "freshMushrooms": "fresh mushrooms",
+
+    "seafood": "seafood",
+    "shrimp": "shrimp",
+    "shrimps": "shrimp",
+    "mussels": "mussels",
+
+    "honey": "honey"
+  }
+}

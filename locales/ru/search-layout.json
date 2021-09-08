@@ -1,0 +1,31 @@
+{
+  "search": {
+    "placeholder": "поиск"
+  },
+  "settings": {
+    "title": "настройки",
+    "language": {
+      "title": "язык",
+      "options": {
+        "en": "английский",
+        "ru": "русский",
+        "uk": "украинский"
+      }
+    },
+    "country": {
+      "title": "страна",
+      "options": {
+        "ukraine": "Украина"
+      }
+    },
+    "city": {
+      "title": "город",
+      "options": {
+        "chernivtsi": "Черновцы"
+      }
+    }
+  },
+  "footer": {
+    "created-by": "сделал"
+  }
+}

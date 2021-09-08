@@ -1,7 +1,6 @@
-import React from 'react';
 import { NextPage } from 'next';
-import { SearchLayout } from 'src/layouts/Search';
+import { Home as HomePageView } from 'src/views/Home';
 
-const Home: NextPage = () => <SearchLayout>Home</SearchLayout>;
+const Home: NextPage = () => <HomePageView />;
 
 export default Home;
