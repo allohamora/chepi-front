@@ -138,14 +138,14 @@ export const Comparison: FC = () => {
   if (isLoading || data === undefined)
     return (
       <SearchLayout>
-        <Alert message="loading" type="info" showIcon />
+        <Alert message={`${capitalize(t('loading'))}...`} type="info" showIcon />
       </SearchLayout>
     );
 
   if (error)
     return (
       <SearchLayout>
-        <Alert message="loading error" type="error" showIcon />
+        <Alert message={capitalize(t('error'))} type="error" showIcon />
       </SearchLayout>
     );
 
@@ -180,7 +180,7 @@ export const Comparison: FC = () => {
 
   const tableData = pizzas.map((pizza) => {
     const { image, variants, id, ingredients, link } = pizza;
-    const title = pizza[`${language}_title`];
+    const title = capitalize(pizza[`${language}_title`]);
 
     const { price, weight, size } = variants.reduce<{ price: number[]; weight: number[]; size: number[] }>(
       /* eslint-disable @typescript-eslint/no-shadow */

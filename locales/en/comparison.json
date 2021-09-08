@@ -1,5 +1,7 @@
 {
   "comparison-empty": "nothing added for comparison",
+  "loading": "loading",
+  "error": "error during loading",
   "table": {
     "delete": "delete",
     "title": "title",

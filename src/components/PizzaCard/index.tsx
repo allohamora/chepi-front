@@ -26,8 +26,8 @@ export const PizzaCard: FC<PizzaCardProps> = ({ pizza, className }) => {
   const { t } = useTranslation('pizza-card');
   const { image, variants } = pizza;
 
-  const title = pizza[`${language}_title`];
-  const descripton = pizza[`${language}_description`];
+  const title = capitalize(pizza[`${language}_title`]);
+  const descripton = capitalize(pizza[`${language}_description`]);
 
   const columns = [
     {
