@@ -1,5 +1,3 @@
-import { NextPage } from 'next';
-
-const Home: NextPage = () => <div>Home</div>;
+import { Home } from 'src/views/Home';
 
 export default Home;

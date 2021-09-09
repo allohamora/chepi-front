@@ -1,0 +1,31 @@
+{
+  "search": {
+    "placeholder": "search"
+  },
+  "settings": {
+    "title": "settings",
+    "language": {
+      "title": "language",
+      "options": {
+        "en": "english",
+        "ru": "russian",
+        "uk": "ukranian"
+      }
+    },
+    "country": {
+      "title": "country",
+      "options": {
+        "ukraine": "Ukraine"
+      }
+    },
+    "city": {
+      "title": "city",
+      "options": {
+        "chernivtsi": "Chernivtsi"
+      }
+    }
+  },
+  "footer": {
+    "created-by": "created by"
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "comparison-empty": "ничего не добавлено для сравнения",
+  "loading": "загрузка",
+  "error": "ошибка во время загрузки",
+  "table": {
+    "delete": "удалить",
+    "title": "название",
+    "image": "изображение",
+    "ingredients": "ингредиенты",
+    "price": "цена",
+    "weight": "вес",
+    "size": "размер",
+    "grn": "грн",
+    "gram": "грамм",
+    "cm": "см"
+  },
+  "ingredient": {
+    "pizzaBase": "основа для пиццы",
+    "dough": "тесто",
+
+    "sauce": "соус",
+    "pestoSauce": "соус песто",
+    "tomatoOrCreamSauce": "томатный или сливочный соус",
+    "tomatoSauce": "томатный соус",
+    "homemadeTomatoSauce": "домашний томатный соус",
+    "caesarSauce": "соус Цезарь",
+    "greenSauce": "зеленый соус",
+    "creamSauce": "сливочный соус",
+
+    "bacon": "бекон",
+    "ham": "ветчина",
+    "chicken": "курица",
+    "bakedChickenFillet": "запеченное куриное филе",
+    "chickenFillet": "куриное филе",
+    "prosciutto": "прошутто",
+    "mincedSalsa": "фарш сальса",
+    "huntingSausages": "охотничьи колбаски",
+    "salami": "салями",
+    "spicySalami": "пряные салями",
+    "piquantSalami": "пикантные салями",
+
+    "cheese": "сыр",
+    "creamСheese": "сливочный сыр",
+    "mozzarellaFresco": "моцарелла fresco",
+    "mozzarella": "моцарелла",
+    "parmesan": "пармезан",
+    "feta": "фета",
+    "gorgonzola": "горгонзола",
+    "radomer": "радомер",
+    "radometer": "радомер",
+
+    "salad": "салат",
+    "saladMix": "микс салата",
+
+    "herb": "зелень",
+    "corn": "кукуруза",
+    "grilledEggplant": "жареный баклажан",
+    "artichokes": "артишоки",
+    "pear": "груша",
+    "pineapple": "ананас",
+    "olives": "оливки",
+    "capers": "каперсы",
+    "basil": "базилик",
+
+    "tomatoes": "помидоры",
+    "cherryTomatoConfit": "конфи из помидоров черри",
+    "cherryTomatoes": "помидоры черри",
+
+    "pepper": "перец",
+    "pepperoniPeppers": "перец пепперони",
+    "pepperoniPepper": "перец пепперони",
+    "chiliPeppers": "перец чили",
+    "chiliPepper": "перец чили",
+    "bellPepper": "болгарский перец",
+
+    "mushrooms": "грибы",
+    "freshMushrooms": "свежие грибы",
+
+    "seafood": "морепродукты",
+    "shrimp": "креветки",
+    "shrimps": "креветки",
+    "mussels": "моллюски",
+
+    "honey": "мед"
+  }
+}

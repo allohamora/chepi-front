@@ -1,0 +1,12 @@
+{
+  "locales": ["en", "ru", "uk"],
+  "defaultLocale": "en",
+  "pages": {
+    "*": ["search-layout", "cookie"],
+    "/": ["home"],
+    "/404": ["not-found"],
+    "/500": ["error"],
+    "/search/[country]/[city]": ["pizza-card", "search-view"],
+    "/comparison": ["comparison", "pizza-card"]
+  }
+}

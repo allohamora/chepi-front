@@ -1,6 +1,6 @@
 {
   "name": "chepi-front",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Frontend for chepi",
   "author": "https://github.com/Allohamora",
   "private": true,
@@ -13,6 +13,8 @@
     "start": "next start",
     "lint": "eslint",
     "lint:fix": "npm run lint src test -- --fix",
+    "csslint": "stylelint",
+    "csslint:fix": "npm run csslint \"**/*.tsx\" -- --fix",
     "format": "prettier",
     "format:fix": "prettier --write .",
     "test": "jest",
@@ -22,15 +24,22 @@
     "release:major": "standard-version --release-as major"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.6.4",
+    "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
+    "antd": "^4.17.0-alpha.0",
     "husky": "^7.0.2",
     "lint-staged": "^11.1.2",
     "next": "11.1.2",
+    "next-translate": "^1.0.7",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-query": "^3.21.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
+    "@emotion/babel-plugin": "^11.3.0",
     "@types/jest": "^27.0.1",
     "@types/react": "17.0.19",
     "@typescript-eslint/eslint-plugin": "^4.30.0",
@@ -46,6 +55,10 @@
     "jest": "^27.1.0",
     "prettier": "^2.3.2",
     "standard-version": "^9.3.1",
+    "stylelint": "^13.13.1",
+    "stylelint-config-rational-order-fix": "^0.1.8",
+    "stylelint-config-standard": "^22.0.0",
+    "stylelint-order": "^4.1.0",
     "typescript": "4.4.2"
   },
   "repository": {
@@ -65,6 +78,9 @@
     "*.{ts,tsx}": [
       "npm run lint -- --fix",
       "npm run test -- --bail --findRelatedTests"
+    ],
+    "*.tsx": [
+      "npm run csslint -- --fix"
     ],
     "*.{js,json,yml,md}": [
       "npm run format -- --write"
