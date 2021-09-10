@@ -1,4 +1,4 @@
-import { FC, Key, useState } from 'react';
+import { FC, Key, useEffect, useState } from 'react';
 import useTranslation from 'next-translate/useTranslation';
 import { Alert, Image, Tag, Button } from 'antd';
 import { Translate } from 'next-translate';
@@ -10,6 +10,7 @@ import { useConfig } from 'src/providers/ConfigProvider';
 import { getPizzasByIds } from 'src/services/pizza';
 import { Ingredient } from 'src/services/pizza/ingredient';
 import { capitalize } from 'src/utils/string';
+import { unique } from 'src/utils/array';
 import { StyledTable } from './style';
 
 interface MinAndMax {
@@ -126,28 +127,47 @@ export const Comparison: FC = () => {
   const {
     config: { language },
   } = useConfig();
-  const { pizzasIds: pizzasIdsState, removePizzas } = useComparison();
+  const { pizzasIds: pizzasIdsState, removePizzas, loading } = useComparison();
   const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
 
   const pizzasIds = Object.keys(pizzasIdsState);
 
   const { isLoading, error, data } = useQuery([keys.pizzasByIds, pizzasIds], () => getPizzasByIds(pizzasIds), {
     keepPreviousData: true,
+    enabled: !loading,
   });
 
-  if (isLoading || data === undefined)
+  useEffect(() => {
+    if (data === undefined) return;
+
+    const pizzas = data.value;
+
+    if (pizzas.length !== pizzasIds.length) {
+      const invalid = unique(
+        pizzas.map(({ id }) => id),
+        pizzasIds,
+      );
+
+      console.warn('some pizzas was not found', invalid);
+      removePizzas(...invalid);
+    }
+  }, [data?.value]);
+
+  if (isLoading || data === undefined) {
     return (
       <SearchLayout>
         <Alert message={`${capitalize(t('loading'))}...`} type="info" showIcon />
       </SearchLayout>
     );
+  }
 
-  if (error)
+  if (error) {
     return (
       <SearchLayout>
         <Alert message={capitalize(t('error'))} type="error" showIcon />
       </SearchLayout>
     );
+  }
 
   const { value: pizzas } = data;
 
@@ -197,10 +217,6 @@ export const Comparison: FC = () => {
 
     return { key: id, image, title, ingredients, price, weight, size, link };
   });
-
-  if (pizzas.length !== pizzasIds.length) {
-    console.warn('some pizzas was not found');
-  }
 
   const selectChangeHandler = (newSelectedkeys: Key[]) => setSelectedKeys(newSelectedkeys as string[]);
   const deleteKeysHandler = () => {
