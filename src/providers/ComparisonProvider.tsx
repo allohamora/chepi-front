@@ -22,7 +22,7 @@ export const ComparisonProvider: FC = ({ children }) => {
     const userPizzasIds = JSON.parse(localStorage.getItem(PIZZAS_IDS_LS_KEY) as string) ?? {};
 
     setPizzasIds(userPizzasIds);
-    setTimeout(() => setLoading(false), 100);
+    setLoading(false);
   }, []);
 
   useEffect(() => {
