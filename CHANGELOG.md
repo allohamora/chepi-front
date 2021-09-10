@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/Allohamora/chepi-front/compare/v1.0.0...v1.0.1) (2021-09-10)
+
+### Bug Fixes
+
+- add remove invalid pizza ids from comparison ([6158993](https://github.com/Allohamora/chepi-front/commits/615899372d4e75ad281fe80fa992370e52f94aa1))
+- getPizzasByIds error when call with empty array ([85b0a7f](https://github.com/Allohamora/chepi-front/commits/85b0a7f91b75e364d06cff092bf30c2d6aa09c39))
+- invalid comparison status ([78c23fb](https://github.com/Allohamora/chepi-front/commits/78c23fbf03e89d3cb5919367a2e57f314d3516f7))
+
 ## 1.0.0 (2021-09-09)
 
 ### ⚠ BREAKING CHANGES
