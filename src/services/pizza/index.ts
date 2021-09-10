@@ -28,12 +28,16 @@ export const getPizzas = async (options: GetPizzasOptions) => {
   return data;
 };
 
+interface GetPizzasByIdsResult {
+  value: Pizza[];
+}
+
 export const getPizzasByIds = async (ids: string[]) => {
   const { data } = await new HttpRequest(join(PIZZA_ENDPOINT, '/ids'))
     .post()
     .jsonBody({ ids })
     .returnType('json')
-    .request<{ value: Pizza[] }>();
+    .request<GetPizzasByIdsResult>();
 
   return data;
 };

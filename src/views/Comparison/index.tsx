@@ -126,28 +126,31 @@ export const Comparison: FC = () => {
   const {
     config: { language },
   } = useConfig();
-  const { pizzasIds: pizzasIdsState, removePizzas } = useComparison();
+  const { pizzasIds: pizzasIdsState, removePizzas, loading } = useComparison();
   const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
 
   const pizzasIds = Object.keys(pizzasIdsState);
 
   const { isLoading, error, data } = useQuery([keys.pizzasByIds, pizzasIds], () => getPizzasByIds(pizzasIds), {
     keepPreviousData: true,
+    enabled: !loading,
   });
 
-  if (isLoading || data === undefined)
+  if (isLoading || data === undefined) {
     return (
       <SearchLayout>
         <Alert message={`${capitalize(t('loading'))}...`} type="info" showIcon />
       </SearchLayout>
     );
+  }
 
-  if (error)
+  if (error) {
     return (
       <SearchLayout>
         <Alert message={capitalize(t('error'))} type="error" showIcon />
       </SearchLayout>
     );
+  }
 
   const { value: pizzas } = data;
 
