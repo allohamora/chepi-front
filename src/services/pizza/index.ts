@@ -33,6 +33,8 @@ interface GetPizzasByIdsResult {
 }
 
 export const getPizzasByIds = async (ids: string[]) => {
+  if (ids.length === 0) return { value: [] };
+
   const { data } = await new HttpRequest(join(PIZZA_ENDPOINT, '/ids'))
     .post()
     .jsonBody({ ids })
