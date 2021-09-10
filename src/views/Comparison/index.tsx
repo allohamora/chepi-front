@@ -1,4 +1,4 @@
-import { FC, Key, useState } from 'react';
+import { FC, Key, useEffect, useState } from 'react';
 import useTranslation from 'next-translate/useTranslation';
 import { Alert, Image, Tag, Button } from 'antd';
 import { Translate } from 'next-translate';
@@ -10,6 +10,7 @@ import { useConfig } from 'src/providers/ConfigProvider';
 import { getPizzasByIds } from 'src/services/pizza';
 import { Ingredient } from 'src/services/pizza/ingredient';
 import { capitalize } from 'src/utils/string';
+import { unique } from 'src/utils/array';
 import { StyledTable } from './style';
 
 interface MinAndMax {
@@ -136,6 +137,22 @@ export const Comparison: FC = () => {
     enabled: !loading,
   });
 
+  useEffect(() => {
+    if (data === undefined) return;
+
+    const pizzas = data.value;
+
+    if (pizzas.length !== pizzasIds.length) {
+      const invalid = unique(
+        pizzas.map(({ id }) => id),
+        pizzasIds,
+      );
+
+      console.warn('some pizzas was not found', invalid);
+      removePizzas(...invalid);
+    }
+  }, [data?.value]);
+
   if (isLoading || data === undefined) {
     return (
       <SearchLayout>
@@ -200,10 +217,6 @@ export const Comparison: FC = () => {
 
     return { key: id, image, title, ingredients, price, weight, size, link };
   });
-
-  if (pizzas.length !== pizzasIds.length) {
-    console.warn('some pizzas was not found');
-  }
 
   const selectChangeHandler = (newSelectedkeys: Key[]) => setSelectedKeys(newSelectedkeys as string[]);
   const deleteKeysHandler = () => {
