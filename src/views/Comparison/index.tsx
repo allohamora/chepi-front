@@ -1,6 +1,6 @@
 import { FC, Key, useEffect, useState } from 'react';
 import useTranslation from 'next-translate/useTranslation';
-import { Alert, Image, Tag, Button } from 'antd';
+import { Alert, Image, Tag, Button, TableProps } from 'antd';
 import { Translate } from 'next-translate';
 import { useQuery } from 'react-query';
 import { SearchLayout } from 'src/layouts/Search';
@@ -11,7 +11,12 @@ import { getPizzasByIds } from 'src/services/pizza';
 import { capitalize } from 'src/utils/string';
 import { unique } from 'src/utils/array';
 import { numberOrNone } from 'src/utils/number';
+import { Seo } from 'src/components/Seo';
+import { compareTwoStrings } from 'string-similarity';
+import { Pizza } from 'src/services/pizza/types';
 import { StyledTable } from './style';
+
+const COMPARE_LIMIT = 0.85;
 
 interface MinAndMax {
   min: number | null;
@@ -24,15 +29,24 @@ interface MinAndMaxNotNull {
 }
 
 interface InitialPizzasState {
+  ingredients: Record<string, number>;
   price: MinAndMax;
   weight: MinAndMax;
   size: MinAndMax;
 }
 
 type PizzasState = {
+  ingredients: Record<string, number>;
   price: MinAndMaxNotNull;
   weight: MinAndMaxNotNull;
   size: MinAndMaxNotNull;
+};
+
+const descriptionToIngredients = (description: string) => description.toLowerCase().split(', ');
+const sortNumberOrNull = (a: number | null, b: number | null) => {
+  if (a === null) return 1;
+  if (b === null) return -1;
+  return a - b;
 };
 
 const handleMinAndMax = (minAndMax: MinAndMax, value: number | null) => {
@@ -67,57 +81,88 @@ const maxHandler = (minAndMax: MinAndMaxNotNull) => (value: number | null) => {
   if (value === null) {
     color = 'default';
   } else {
-    color = minAndMax.min > value ? 'default' : 'success';
+    color = minAndMax.max > value ? 'default' : 'success';
   }
 
   return <Tag color={color}>{numberOrNone(value)}</Tag>;
 };
 
-const getColumns = (t: Translate, state: PizzasState) => [
-  {
-    title: capitalize(t('table.title')),
-    dataIndex: 'title',
-    key: 'title',
-    render: (title: string, pizzaArgs: unknown) => {
-      const { link } = pizzaArgs as { link: string };
+const getColumns = (t: Translate, state: PizzasState) => {
+  const ingredientsState = Object.entries(state.ingredients);
 
-      return (
-        <a rel="noopener noreferrer" target="_blank" href={link}>
-          {title}
-        </a>
-      );
+  const columns: TableProps<Pizza>['columns'] = [
+    {
+      title: capitalize(t('table.title')),
+      dataIndex: 'title',
+      key: 'title',
+      render: (title: string, pizzaArgs: unknown) => {
+        const { link } = pizzaArgs as { link: string };
+
+        return (
+          <a rel="noopener noreferrer" target="_blank" href={link}>
+            {title}
+          </a>
+        );
+      },
     },
-  },
-  {
-    title: capitalize(t('table.image')),
-    dataIndex: 'image',
-    key: 'image',
-    render: (image: string) => <Image src={image} alt="pizza image" />,
-  },
-  {
-    title: capitalize(t('table.description')),
-    dataIndex: 'description',
-    key: 'description',
-  },
-  {
-    title: `${capitalize(t('table.price'))} (${t('table.grn')})`,
-    dataIndex: 'price',
-    key: 'price',
-    render: minHandler(state.price),
-  },
-  {
-    title: `${capitalize(t('table.weight'))} (${t('table.gram')})`,
-    dataIndex: 'weight',
-    key: 'weight',
-    render: maxHandler(state.weight),
-  },
-  {
-    title: `${capitalize(t('table.size'))} (${t('table.cm')})`,
-    dataIndex: 'size',
-    key: 'size',
-    render: maxHandler(state.size),
-  },
-];
+    {
+      title: capitalize(t('table.image')),
+      dataIndex: 'image',
+      key: 'image',
+      render: (image: string) => <Image src={image} alt="pizza image" />,
+    },
+    {
+      title: capitalize(t('table.description')),
+      dataIndex: 'description',
+      key: 'description',
+      render: (description: string) => {
+        const ingredients = descriptionToIngredients(description);
+        const tags = ingredients.map((ing, i) => {
+          const finded = ingredientsState.find(([key, value]) => {
+            if (ing === key && value <= 1) {
+              return false;
+            }
+
+            return compareTwoStrings(key, ing) >= COMPARE_LIMIT;
+          });
+
+          const color = finded ? 'default' : 'success';
+
+          return (
+            <Tag key={`${ing}-${i}`} color={color}>
+              {ing}
+            </Tag>
+          );
+        });
+
+        return <div>{tags}</div>;
+      },
+    },
+    {
+      title: `${capitalize(t('table.price'))} (${t('table.grn')})`,
+      dataIndex: 'price',
+      key: 'price',
+      render: minHandler(state.price),
+      sorter: (a: Pizza, b: Pizza) => sortNumberOrNull(a.price, b.price),
+    },
+    {
+      title: `${capitalize(t('table.weight'))} (${t('table.gram')})`,
+      dataIndex: 'weight',
+      key: 'weight',
+      render: maxHandler(state.weight),
+      sorter: (a: Pizza, b: Pizza) => sortNumberOrNull(a.weight, b.weight),
+    },
+    {
+      title: `${capitalize(t('table.size'))} (${t('table.cm')})`,
+      dataIndex: 'size',
+      key: 'size',
+      render: maxHandler(state.size),
+      sorter: (a: Pizza, b: Pizza) => sortNumberOrNull(a.size, b.size),
+    },
+  ];
+
+  return columns;
+};
 
 export const Comparison: FC = () => {
   const { t } = useTranslation('comparison');
@@ -126,6 +171,8 @@ export const Comparison: FC = () => {
   } = useConfig();
   const { pizzasIds: pizzasIdsState, removePizzas, loading } = useComparison();
   const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
+
+  const seo = <Seo title={t('title')} description={t('description')} />;
 
   const pizzasIds = Object.keys(pizzasIdsState);
 
@@ -153,6 +200,7 @@ export const Comparison: FC = () => {
   if (isLoading || data === undefined) {
     return (
       <SearchLayout>
+        {seo}
         <Alert message={`${capitalize(t('loading'))}...`} type="info" showIcon />
       </SearchLayout>
     );
@@ -161,6 +209,7 @@ export const Comparison: FC = () => {
   if (error) {
     return (
       <SearchLayout>
+        {seo}
         <Alert message={capitalize(t('error'))} type="error" showIcon />
       </SearchLayout>
     );
@@ -175,6 +224,13 @@ export const Comparison: FC = () => {
       state.weight = handleMinAndMax(state.weight, pizza.weight);
       state.size = handleMinAndMax(state.size, pizza.size);
 
+      const description = pizza[`${language}_description`];
+
+      descriptionToIngredients(description).forEach((ing) => {
+        const base = state.ingredients[ing] ?? 0;
+        state.ingredients[ing] = base + 1;
+      });
+
       return state as PizzasState;
     },
     /* eslint-enable @typescript-eslint/no-shadow, no-param-reassign */
@@ -186,7 +242,8 @@ export const Comparison: FC = () => {
     } as InitialPizzasState,
   ) as PizzasState;
 
-  const tableColumns = getColumns(t, state);
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  const tableColumns = getColumns(t, state) as TableProps<object>['columns'];
 
   const tableData = pizzas.map((pizza) => {
     const { image, id, link, price, size, weight } = pizza;
@@ -205,6 +262,7 @@ export const Comparison: FC = () => {
 
   return (
     <SearchLayout>
+      {seo}
       {pizzas.length > 0 && (
         <>
           <Button onClick={deleteKeysHandler} disabled={selectedKeys.length === 0} type="primary" danger>

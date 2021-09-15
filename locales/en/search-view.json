@@ -1,4 +1,15 @@
 {
+  "title": "Search",
+  "description": "Search result for \"{{query}}\"",
+  "sort": {
+    "no-sort": "No sorting",
+    "price-asc": "Price ascending",
+    "price-desc": "Price descending",
+    "size-asc": "Size ascending",
+    "size-desc": "Size descending",
+    "weight-asc": "Weight ascending",
+    "weight-desc": "Weight descending"
+  },
   "pizza": {
     "fetch": {
       "error": "error during loading",

@@ -4,6 +4,7 @@ import { Button, Result } from 'antd';
 import { useRouter } from 'next/dist/client/router';
 import { SearchLayout } from 'src/layouts/Search';
 import { capitalize } from 'src/utils/string';
+import { Seo } from 'src/components/Seo';
 
 export const Error: FC = () => {
   const { t } = useTranslation('error');
@@ -18,6 +19,8 @@ export const Error: FC = () => {
 
   return (
     <SearchLayout>
+      <Seo title="500" description="500" />
+
       <Result
         status="500"
         title="500"

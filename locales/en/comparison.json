@@ -1,4 +1,6 @@
 {
+  "title": "Comparison",
+  "description": "Comparison Chepi pizzas",
   "comparison-empty": "nothing added for comparison",
   "loading": "loading",
   "error": "error during loading",
@@ -6,7 +8,7 @@
     "delete": "delete",
     "title": "name",
     "image": "image",
-    "description": "description",
+    "description": "ingredients",
     "price": "price",
     "weight": "weight",
     "size": "size",
