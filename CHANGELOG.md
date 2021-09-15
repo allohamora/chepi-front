@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/Allohamora/chepi-front/compare/v1.0.1...v2.0.0) (2021-09-15)
+
+### ⚠ BREAKING CHANGES
+
+- remove ingredient and variants
+
+### Features
+
+- add ingredient comparison v2 ([1c35ade](https://github.com/Allohamora/chepi-front/commits/1c35ade0ab4add138d80796264b5843bfeb74851))
+- add Seo ([9c38333](https://github.com/Allohamora/chepi-front/commits/9c383331a01416e1310bb16a983d804c47e4a1e7))
+- add sort for price weight and size in Comparison ([c59add9](https://github.com/Allohamora/chepi-front/commits/c59add916c67f043948522ad5e20f4122a9f8856))
+- add sort to search page ([78a84f5](https://github.com/Allohamora/chepi-front/commits/78a84f5f55c855c52820282cb7163a14e7c8306a))
+- add title size view in PizzaCard ([b494c57](https://github.com/Allohamora/chepi-front/commits/b494c57318194589c8c30e26348a80660d90e7a2))
+
+### Bug Fixes
+
+- incorrect max values view ([db0775d](https://github.com/Allohamora/chepi-front/commits/db0775dabb4efbb5493cdc51148b04f34d5f791f))
+- migrate to pizza 2.0 structure ([75a54a9](https://github.com/Allohamora/chepi-front/commits/75a54a9df8b18f595cc3aa85a691e38cc765dfba))
+
 ### [1.0.1](https://github.com/Allohamora/chepi-front/compare/v1.0.0...v1.0.1) (2021-09-10)
 
 ### Bug Fixes
