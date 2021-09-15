@@ -218,7 +218,6 @@ export const Comparison: FC = () => {
   const { value: pizzas } = data;
 
   const state = pizzas.reduce(
-    /* eslint-disable @typescript-eslint/no-shadow, no-param-reassign */
     (state, pizza) => {
       state.price = handleMinAndMax(state.price, pizza.price);
       state.weight = handleMinAndMax(state.weight, pizza.weight);
@@ -233,7 +232,6 @@ export const Comparison: FC = () => {
 
       return state as PizzasState;
     },
-    /* eslint-enable @typescript-eslint/no-shadow, no-param-reassign */
     {
       ingredients: {},
       price: { min: null, max: null },
@@ -242,7 +240,6 @@ export const Comparison: FC = () => {
     } as InitialPizzasState,
   ) as PizzasState;
 
-  // eslint-disable-next-line @typescript-eslint/ban-types
   const tableColumns = getColumns(t, state) as TableProps<object>['columns'];
 
   const tableData = pizzas.map((pizza) => {
