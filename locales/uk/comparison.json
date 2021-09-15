@@ -6,81 +6,12 @@
     "delete": "видалити",
     "title": "назва",
     "image": "зображення",
-    "ingredients": "інгредієнти",
+    "description": "опис",
     "price": "ціна",
     "weight": "вага",
     "size": "розмір",
     "grn": "грн",
     "gram": "грам",
     "cm": "см"
-  },
-  "ingredient": {
-    "pizzaBase": "основа для піци",
-    "dough": "тісто",
-
-    "sauce": "соус",
-    "pestoSauce": "соус песто",
-    "tomatoOrCreamSauce": "томатний або вершковий соус",
-    "tomatoSauce": "томатний соус",
-    "homemadeTomatoSauce": "домашній томатный соус",
-    "caesarSauce": "соус Цезар",
-    "greenSauce": "зелений соус",
-    "creamSauce": "вершковий соус",
-
-    "bacon": "бекон",
-    "ham": "шинка",
-    "chicken": "курка",
-    "bakedChickenFillet": "запечене куряче філе ",
-    "chickenFillet": "куряче філе",
-    "prosciutto": "прошутто",
-    "mincedSalsa": "фарш сальса",
-    "huntingSausages": "мисливські ковбаски",
-    "salami": "салямі",
-    "spicySalami": "пряні салямі",
-    "piquantSalami": "пікантні салямі ",
-
-    "cheese": "сир",
-    "creamСheese": "вершковий сир",
-    "mozzarellaFresco": "моцарелла fresco",
-    "mozzarella": "моцарелла",
-    "parmesan": "пармезан",
-    "feta": "фета",
-    "gorgonzola": "горгонзола",
-    "radomer": "радомер",
-    "radometer": "радомер",
-
-    "salad": "салат",
-    "saladMix": "мікс салату",
-
-    "herb": "зелень",
-    "corn": "кукурудза",
-    "grilledEggplant": "смажений баклажан",
-    "artichokes": "артишоки",
-    "pear": "груша",
-    "pineapple": "ананас",
-    "olives": "оливки",
-    "capers": "каперси",
-    "basil": "базилік",
-
-    "tomatoes": "помідори",
-    "cherryTomatoConfit": "конфі з помідорів чері ",
-    "cherryTomatoes": "помідори чері",
-
-    "pepper": "перець",
-    "pepperoniPeppers": "перець пепероні",
-    "pepperoniPepper": "перець пепероні",
-    "chiliPeppers": "перець чилі",
-    "chiliPepper": "перець чилі",
-    "bellPepper": "болгарський перець",
-
-    "mushrooms": "гриби",
-    "freshMushrooms": "свіжі гриби",
-
-    "seafood": "морепродукти",
-    "shrimp": "креветки",
-    "shrimps": "креветки",
-    "mussels": "молюски",
-
-    "honey": "мед"
   }
 }
