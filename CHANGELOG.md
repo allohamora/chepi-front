@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/Allohamora/chepi-front/compare/v2.0.0...v2.0.1) (2021-09-15)
+
+### Bug Fixes
+
+- move sort state to query ([7cb2975](https://github.com/Allohamora/chepi-front/commits/7cb2975ccbdca21465c1cf7ccee7b8f27d5f2fca))
+
 ## [2.0.0](https://github.com/Allohamora/chepi-front/compare/v1.0.1...v2.0.0) (2021-09-15)
 
 ### ⚠ BREAKING CHANGES

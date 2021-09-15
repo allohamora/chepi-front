@@ -1,9 +1,9 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import useTranslation from 'next-translate/useTranslation';
 import { useQuery } from 'react-query';
 import { SearchLayout } from 'src/layouts/Search';
 import { keys } from 'src/lib/react-query';
-import { getPizzas, GetPizzasOptions } from 'src/services/pizza';
+import { getPizzas } from 'src/services/pizza';
 import { Alert, Pagination, Row, Select } from 'antd';
 import { useConfig } from 'src/providers/ConfigProvider';
 import { useRouter } from 'next/dist/client/router';
@@ -21,25 +21,48 @@ export const Search: FC = () => {
     config: { city, country },
   } = useConfig();
 
+  const { t } = useTranslation('search-view');
+
   const router = useRouter();
   const {
-    query: { query = '', page: pageQuery },
+    query: { query: queryString = '', order: orderString = '0', page: pageQuery, ...restQuery },
   } = router;
   const offset = !pageQuery ? 0 : PIZZAS_PER_PAGE * (Number(pageQuery) - 1);
+  const query = queryString as string;
+  const order = parseInt(orderString as string, 10);
 
-  const [orderBy, setOrderBy] = useState<GetPizzasOptions['orderBy']>(null);
+  const sortOptions = [
+    { text: capitalize(t('sort.no-sort')), value: null },
+    { text: capitalize(t('sort.price-asc')), value: { target: 'price', cause: 'asc' } },
+    { text: capitalize(t('sort.price-desc')), value: { target: 'price', cause: 'desc' } },
+    { text: capitalize(t('sort.size-asc')), value: { target: 'size', cause: 'asc' } },
+    { text: capitalize(t('sort.size-desc')), value: { target: 'size', cause: 'desc' } },
+    { text: capitalize(t('sort.weight-asc')), value: { target: 'weight', cause: 'asc' } },
+    { text: capitalize(t('sort.weight-desc')), value: { target: 'weight', cause: 'desc' } },
+  ] as const;
+
+  const sortChangeHandler = (newOrder: number) => {
+    router.push({ query: { query, order: newOrder, ...restQuery } });
+  };
 
   const { isLoading, data, error } = useQuery(
-    [keys.pizzas, query, offset, orderBy],
-    () => getPizzas({ city, country, query: query as string, offset, limit: PIZZAS_PER_PAGE, orderBy }),
+    [keys.pizzas, query, offset, order],
+    () =>
+      getPizzas({
+        city,
+        country,
+        query: query as string,
+        offset,
+        limit: PIZZAS_PER_PAGE,
+        orderBy: sortOptions[order].value,
+      }),
     { keepPreviousData: true },
   );
 
-  const { t } = useTranslation('search-view');
   const seo = (
     <Seo
-      title={(query as string).length === 0 ? capitalize(t('title')) : (query as string)}
-      description={capitalize(t('description', { query: query as string }))}
+      title={query.length === 0 ? capitalize(t('title')) : query}
+      description={capitalize(t('description', { query }))}
     />
   );
 
@@ -67,20 +90,6 @@ export const Search: FC = () => {
     const finalPage = page === 1 ? undefined : page;
 
     router.push({ query: { ...router.query, page: finalPage } });
-  };
-
-  const sortOptions = [
-    { text: capitalize(t('sort.no-sort')), value: null },
-    { text: capitalize(t('sort.price-asc')), value: { target: 'price', cause: 'asc' } },
-    { text: capitalize(t('sort.price-desc')), value: { target: 'price', cause: 'desc' } },
-    { text: capitalize(t('sort.size-asc')), value: { target: 'size', cause: 'asc' } },
-    { text: capitalize(t('sort.size-desc')), value: { target: 'size', cause: 'desc' } },
-    { text: capitalize(t('sort.weight-asc')), value: { target: 'weight', cause: 'asc' } },
-    { text: capitalize(t('sort.weight-desc')), value: { target: 'weight', cause: 'desc' } },
-  ] as const;
-
-  const sortChangeHandler = (optionIndex: number) => {
-    setOrderBy(sortOptions[optionIndex].value);
   };
 
   return (
