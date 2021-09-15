@@ -68,7 +68,7 @@ const maxHandler = (minAndMax: MinAndMaxNotNull) => (value: number | null) => {
   if (value === null) {
     color = 'default';
   } else {
-    color = minAndMax.min > value ? 'default' : 'success';
+    color = minAndMax.max > value ? 'default' : 'success';
   }
 
   return <Tag color={color}>{numberOrNone(value)}</Tag>;
