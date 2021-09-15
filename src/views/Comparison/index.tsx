@@ -1,6 +1,6 @@
 import { FC, Key, useEffect, useState } from 'react';
 import useTranslation from 'next-translate/useTranslation';
-import { Alert, Image, Tag, Button } from 'antd';
+import { Alert, Image, Tag, Button, TableProps } from 'antd';
 import { Translate } from 'next-translate';
 import { useQuery } from 'react-query';
 import { SearchLayout } from 'src/layouts/Search';
@@ -13,6 +13,7 @@ import { unique } from 'src/utils/array';
 import { numberOrNone } from 'src/utils/number';
 import { Seo } from 'src/components/Seo';
 import { compareTwoStrings } from 'string-similarity';
+import { Pizza } from 'src/services/pizza/types';
 import { StyledTable } from './style';
 
 const COMPARE_LIMIT = 0.85;
@@ -42,6 +43,11 @@ type PizzasState = {
 };
 
 const descriptionToIngredients = (description: string) => description.toLowerCase().split(', ');
+const sortNumberOrNull = (a: number | null, b: number | null) => {
+  if (a === null) return 1;
+  if (b === null) return -1;
+  return a - b;
+};
 
 const handleMinAndMax = (minAndMax: MinAndMax, value: number | null) => {
   if (value === null) return minAndMax;
@@ -84,7 +90,7 @@ const maxHandler = (minAndMax: MinAndMaxNotNull) => (value: number | null) => {
 const getColumns = (t: Translate, state: PizzasState) => {
   const ingredientsState = Object.entries(state.ingredients);
 
-  return [
+  const columns: TableProps<Pizza>['columns'] = [
     {
       title: capitalize(t('table.title')),
       dataIndex: 'title',
@@ -137,20 +143,25 @@ const getColumns = (t: Translate, state: PizzasState) => {
       dataIndex: 'price',
       key: 'price',
       render: minHandler(state.price),
+      sorter: (a: Pizza, b: Pizza) => sortNumberOrNull(a.price, b.price),
     },
     {
       title: `${capitalize(t('table.weight'))} (${t('table.gram')})`,
       dataIndex: 'weight',
       key: 'weight',
       render: maxHandler(state.weight),
+      sorter: (a: Pizza, b: Pizza) => sortNumberOrNull(a.weight, b.weight),
     },
     {
       title: `${capitalize(t('table.size'))} (${t('table.cm')})`,
       dataIndex: 'size',
       key: 'size',
       render: maxHandler(state.size),
+      sorter: (a: Pizza, b: Pizza) => sortNumberOrNull(a.size, b.size),
     },
   ];
+
+  return columns;
 };
 
 export const Comparison: FC = () => {
@@ -231,7 +242,8 @@ export const Comparison: FC = () => {
     } as InitialPizzasState,
   ) as PizzasState;
 
-  const tableColumns = getColumns(t, state);
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  const tableColumns = getColumns(t, state) as TableProps<object>['columns'];
 
   const tableData = pizzas.map((pizza) => {
     const { image, id, link, price, size, weight } = pizza;
