@@ -1,11 +1,3 @@
-import { Ingredient } from './ingredient';
-
-export interface Variant {
-  size: number; // 30cm
-  price: number; // 135grn
-  weight: number; // 400g
-}
-
 export const supportedLangs = ['uk', 'ru', 'en'] as const;
 export type Lang = typeof supportedLangs[number];
 
@@ -19,9 +11,10 @@ interface BasePizza {
   id: string;
   link: string; // http://pizza.com/buy-pizza/:id
   image: string; // http://pizza.com/image
-  ingredients: Ingredient[]; // ['peper', 'pepperoni']
   lang: Lang;
-  variants: Variant[];
+  size: number | null; // 30cm
+  price: number | null; // 135grn
+  weight: number | null; // 400g
   country: County;
   city: City;
 }
