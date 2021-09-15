@@ -25,7 +25,7 @@ const langToLocale = (lang: Lang) => {
   }
 };
 
-export const Seo: FC<SEOProps> = ({ title, description, image = absoluteImage('/logo.svg') }) => {
+export const Seo: FC<SEOProps> = ({ title, description, image = absoluteImage('/logo.png') }) => {
   const { lang: currentLang } = useTranslation();
   const { asPath } = useRouter();
   const path = asPath.split('?')[0];
