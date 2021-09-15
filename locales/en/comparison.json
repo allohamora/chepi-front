@@ -8,7 +8,7 @@
     "delete": "delete",
     "title": "name",
     "image": "image",
-    "description": "description",
+    "description": "ingredients",
     "price": "price",
     "weight": "weight",
     "size": "size",
