@@ -76,7 +76,7 @@ export const SearchLayout: FC = ({ children }) => {
   const [settingsVisible, setSettingsVisible] = useState(false);
   const router = useRouter();
   const {
-    query: { query },
+    query: { query, ...restQuery },
   } = router;
   const { t } = useTranslation('search-layout');
   const [searchQuery, setSearchQuery] = useState(query);
@@ -84,7 +84,7 @@ export const SearchLayout: FC = ({ children }) => {
   const searchHandler = (newQuery: string) =>
     router.push({
       pathname: '/search/[country]/[city]',
-      query: { query: newQuery, country: config.country, city: config.city },
+      query: { ...restQuery, query: newQuery, country: config.country, city: config.city },
     });
 
   const searchChangeHandler = (e: ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value);

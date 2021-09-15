@@ -98,7 +98,7 @@ export const Search: FC = () => {
       {value.length > 0 && (
         <>
           <SelectContainer>
-            <Select defaultValue={sort} onChange={sortChangeHandler}>
+            <Select value={sort} onChange={sortChangeHandler}>
               {sortOptions.map(({ text }, i) => (
                 <Option key={i} value={i}>
                   {text}
