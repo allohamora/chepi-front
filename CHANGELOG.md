@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/Allohamora/chepi-front/compare/v2.0.1...v2.1.0) (2021-09-15)
+
+### Features
+
+- add query example ([c5a8348](https://github.com/Allohamora/chepi-front/commits/c5a834810852a0ae5f85602b5063f24fbaa34b12))
+
+### Bug Fixes
+
+- increase container size to 960px ([3b8a03a](https://github.com/Allohamora/chepi-front/commits/3b8a03a161bc118b70153c7cd2898042d4c253a0))
+- invalid default sort value ([1add26a](https://github.com/Allohamora/chepi-front/commits/1add26ae1e72aee6f343303fc4afcfbdab7ac095))
+- not saved sort when you run next search query ([fbcce67](https://github.com/Allohamora/chepi-front/commits/fbcce67a086eb6a9ec3c3c033ac40bc1ddde2d80))
+- search description ([9633541](https://github.com/Allohamora/chepi-front/commits/963354177df6fa8d808e0ff0fed7be29b9bdf078))
+- seo description and image ([23d8c27](https://github.com/Allohamora/chepi-front/commits/23d8c27fa3c6838fd0e16348b271a32a365a22da))
+
 ### [2.0.1](https://github.com/Allohamora/chepi-front/compare/v2.0.0...v2.0.1) (2021-09-15)
 
 ### Bug Fixes
