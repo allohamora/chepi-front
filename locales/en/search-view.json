@@ -1,6 +1,6 @@
 {
   "title": "Search",
-  "description": "Search result for \"{{query}}\"",
+  "description": "Search result",
   "sort": {
     "no-sort": "No sorting",
     "price-asc": "Price ascending",
