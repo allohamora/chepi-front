@@ -4,6 +4,7 @@ import { Button, Result } from 'antd';
 import { SearchLayout } from 'src/layouts/Search';
 import { capitalize } from 'src/utils/string';
 import { useRouter } from 'next/dist/client/router';
+import { Seo } from 'src/components/Seo';
 
 export const NotFound: FC = () => {
   const { t } = useTranslation('not-found');
@@ -16,6 +17,8 @@ export const NotFound: FC = () => {
 
   return (
     <SearchLayout>
+      <Seo title="404" description="404" />
+
       <Result
         status="404"
         title="404"

@@ -9,6 +9,7 @@ import { useConfig } from 'src/providers/ConfigProvider';
 import { useRouter } from 'next/dist/client/router';
 import { PizzaCard } from 'src/components/PizzaCard';
 import { capitalize } from 'src/utils/string';
+import { Seo } from 'src/components/Seo';
 import { PaginationContainer } from './style';
 
 const PIZZAS_PER_PAGE = 20;
@@ -31,10 +32,17 @@ export const Search: FC = () => {
   );
 
   const { t } = useTranslation('search-view');
+  const seo = (
+    <Seo
+      title={(query as string).length === 0 ? capitalize(t('title')) : (query as string)}
+      description={capitalize(t('description', { query: query as string }))}
+    />
+  );
 
   if (isLoading || data === undefined) {
     return (
       <SearchLayout>
+        {seo}
         <Alert message={capitalize(`${t('pizza.fetch.loading')}...`)} type="info" showIcon />
       </SearchLayout>
     );
@@ -43,6 +51,7 @@ export const Search: FC = () => {
   if (error) {
     return (
       <SearchLayout>
+        {seo}
         <Alert message={capitalize(t('pizza.fetch.error'))} type="error" showIcon />
       </SearchLayout>
     );
@@ -58,6 +67,7 @@ export const Search: FC = () => {
 
   return (
     <SearchLayout>
+      {seo}
       {value.length > 0 && (
         <>
           <Row justify="space-around" gutter={[16, 16]}>

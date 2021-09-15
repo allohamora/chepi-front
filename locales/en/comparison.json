@@ -1,4 +1,6 @@
 {
+  "title": "Comparison",
+  "description": "Comparison Chepi pizzas",
   "comparison-empty": "nothing added for comparison",
   "loading": "loading",
   "error": "error during loading",

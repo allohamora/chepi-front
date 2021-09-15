@@ -11,6 +11,7 @@ import { getPizzasByIds } from 'src/services/pizza';
 import { capitalize } from 'src/utils/string';
 import { unique } from 'src/utils/array';
 import { numberOrNone } from 'src/utils/number';
+import { Seo } from 'src/components/Seo';
 import { StyledTable } from './style';
 
 interface MinAndMax {
@@ -127,6 +128,8 @@ export const Comparison: FC = () => {
   const { pizzasIds: pizzasIdsState, removePizzas, loading } = useComparison();
   const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
 
+  const seo = <Seo title={t('title')} description={t('description')} />;
+
   const pizzasIds = Object.keys(pizzasIdsState);
 
   const { isLoading, error, data } = useQuery([keys.pizzasByIds, pizzasIds], () => getPizzasByIds(pizzasIds), {
@@ -153,6 +156,7 @@ export const Comparison: FC = () => {
   if (isLoading || data === undefined) {
     return (
       <SearchLayout>
+        {seo}
         <Alert message={`${capitalize(t('loading'))}...`} type="info" showIcon />
       </SearchLayout>
     );
@@ -161,6 +165,7 @@ export const Comparison: FC = () => {
   if (error) {
     return (
       <SearchLayout>
+        {seo}
         <Alert message={capitalize(t('error'))} type="error" showIcon />
       </SearchLayout>
     );
@@ -205,6 +210,7 @@ export const Comparison: FC = () => {
 
   return (
     <SearchLayout>
+      {seo}
       {pizzas.length > 0 && (
         <>
           <Button onClick={deleteKeysHandler} disabled={selectedKeys.length === 0} type="primary" danger>

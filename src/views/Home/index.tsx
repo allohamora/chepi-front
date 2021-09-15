@@ -4,6 +4,7 @@ import { Typography } from 'antd';
 import { SearchOutlined, SettingFilled, PushpinOutlined } from '@ant-design/icons';
 import { SearchLayout } from 'src/layouts/Search';
 import { capitalize } from 'src/utils/string';
+import { Seo } from 'src/components/Seo';
 import { Block } from './style';
 
 const { Title, Paragraph } = Typography;
@@ -13,6 +14,8 @@ export const Home: FC = () => {
 
   return (
     <SearchLayout>
+      <Seo title={capitalize(t('title'))} description={capitalize(t('description'))} />
+
       <Block>
         <Title level={3}>{capitalize(t('welcome'))}!</Title>
         <Paragraph>

@@ -1,4 +1,6 @@
 {
+  "title": "Search",
+  "description": "Search result for \"{{query}}\"",
   "pizza": {
     "fetch": {
       "error": "error during loading",
