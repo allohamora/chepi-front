@@ -25,11 +25,11 @@ export const Search: FC = () => {
 
   const router = useRouter();
   const {
-    query: { query: queryString = '', order: orderString = '0', page: pageQuery, ...restQuery },
+    query: { query: queryString = '', sort: sortString = '0', page: pageQuery, ...restQuery },
   } = router;
   const offset = !pageQuery ? 0 : PIZZAS_PER_PAGE * (Number(pageQuery) - 1);
   const query = queryString as string;
-  const order = parseInt(orderString as string, 10);
+  const sort = parseInt(sortString as string, 10);
 
   const sortOptions = [
     { text: capitalize(t('sort.no-sort')), value: null },
@@ -41,12 +41,12 @@ export const Search: FC = () => {
     { text: capitalize(t('sort.weight-desc')), value: { target: 'weight', cause: 'desc' } },
   ] as const;
 
-  const sortChangeHandler = (newOrder: number) => {
-    router.push({ query: { query, order: newOrder, ...restQuery } });
+  const sortChangeHandler = (newSort: number) => {
+    router.push({ query: { query, sort: newSort, ...restQuery } });
   };
 
   const { isLoading, data, error } = useQuery(
-    [keys.pizzas, query, offset, order],
+    [keys.pizzas, query, offset, sort],
     () =>
       getPizzas({
         city,
@@ -54,7 +54,7 @@ export const Search: FC = () => {
         query: query as string,
         offset,
         limit: PIZZAS_PER_PAGE,
-        orderBy: sortOptions[order].value,
+        orderBy: sortOptions[sort].value,
       }),
     { keepPreviousData: true },
   );
@@ -98,7 +98,7 @@ export const Search: FC = () => {
       {value.length > 0 && (
         <>
           <SelectContainer>
-            <Select defaultValue={0} onChange={sortChangeHandler}>
+            <Select defaultValue={sort} onChange={sortChangeHandler}>
               {sortOptions.map(({ text }, i) => (
                 <Option key={i} value={i}>
                   {text}
