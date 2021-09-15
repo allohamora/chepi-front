@@ -5,12 +5,16 @@ import { Pizza } from './types';
 
 const PIZZA_ENDPOINT = join(config.API_URL, '/pizza');
 
-interface GetPizzasOptions {
+export interface GetPizzasOptions {
   query: string;
   city: Pizza['city'];
   country: Pizza['country'];
   limit?: number;
   offset?: number;
+  orderBy?: {
+    target: 'weight' | 'size' | 'price';
+    cause: 'asc' | 'desc';
+  } | null;
 }
 
 interface GetPizzasResponse {

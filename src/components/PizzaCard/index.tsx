@@ -74,7 +74,7 @@ export const PizzaCard: FC<PizzaCardProps> = ({ pizza, className }) => {
       hoverable
     >
       <Meta
-        title={`${title}${size !== null && ` ${size}${t('cm')}`}`}
+        title={`${title}${size !== null ? ` ${size}${t('cm')}` : ''}`}
         description={
           <>
             <Paragraph>{capitalize(descripton)}</Paragraph>
