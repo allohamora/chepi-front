@@ -6,6 +6,7 @@ import { useConfig } from 'src/providers/ConfigProvider';
 import { ShoppingOutlined } from '@ant-design/icons';
 import { capitalize } from 'src/utils/string';
 import { useComparison } from 'src/providers/ComparisonProvider';
+import { numberOrNone } from 'src/utils/number';
 import { StyledCard, PushinIcon } from './style';
 
 const CLICK_IGNORE = 'click-ignore';
@@ -24,7 +25,7 @@ export const PizzaCard: FC<PizzaCardProps> = ({ pizza, className }) => {
   } = useConfig();
   const { pizzasIds, addPizza, removePizzas } = useComparison();
   const { t } = useTranslation('pizza-card');
-  const { image, variants } = pizza;
+  const { image, price, size, weight } = pizza;
 
   const title = capitalize(pizza[`${language}_title`]);
   const descripton = capitalize(pizza[`${language}_description`]);
@@ -47,7 +48,7 @@ export const PizzaCard: FC<PizzaCardProps> = ({ pizza, className }) => {
     },
   ];
 
-  const data = variants.map((variant, i) => ({ key: i, ...variant }));
+  const data = [{ key: 0, price: numberOrNone(price), size: numberOrNone(size), weight: numberOrNone(weight) }];
 
   const togglePushin = (pizzaId: string) => () => {
     if (pizzasIds[pizzaId]) {
