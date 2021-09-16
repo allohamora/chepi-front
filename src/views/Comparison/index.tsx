@@ -63,29 +63,22 @@ const handleMinAndMax = (minAndMax: MinAndMax, value: number | null) => {
   return filtered as { min: number; max: number };
 };
 
-const minHandler = (minAndMax: MinAndMaxNotNull) => (value: number | null) => {
+type TagColor = 'default' | 'success';
+type Handler = (minAndMax: MinAndMaxNotNull, value: number) => TagColor;
+const numberHighlight = (handler: Handler) => (minAndMax: MinAndMaxNotNull) => (value: number | null) => {
   let color: 'default' | 'success';
 
   if (value === null) {
     color = 'default';
   } else {
-    color = minAndMax.min < value ? 'default' : 'success';
+    color = handler(minAndMax, value);
   }
 
   return <Tag color={color}>{numberOrNone(value)}</Tag>;
 };
 
-const maxHandler = (minAndMax: MinAndMaxNotNull) => (value: number | null) => {
-  let color: 'default' | 'success';
-
-  if (value === null) {
-    color = 'default';
-  } else {
-    color = minAndMax.max > value ? 'default' : 'success';
-  }
-
-  return <Tag color={color}>{numberOrNone(value)}</Tag>;
-};
+const minHandler = numberHighlight((minAndMax, value) => (minAndMax.min < value ? 'default' : 'success'));
+const maxHandler = numberHighlight((minAndMax, value) => (minAndMax.max > value ? 'default' : 'success'));
 
 const getColumns = (t: Translate, state: PizzasState) => {
   const ingredientsState = Object.entries(state.ingredients);
@@ -95,12 +88,13 @@ const getColumns = (t: Translate, state: PizzasState) => {
       title: capitalize(t('table.title')),
       dataIndex: 'title',
       key: 'title',
-      render: (title: string, pizzaArgs: unknown) => {
-        const { link } = pizzaArgs as { link: string };
+      render: (title: string, pizza: Pizza) => {
+        const { link, size } = pizza;
 
         return (
           <a rel="noopener noreferrer" target="_blank" href={link}>
             {title}
+            {size !== null ? ` ${size}${t('table.cm')}` : ''}
           </a>
         );
       },
@@ -218,19 +212,19 @@ export const Comparison: FC = () => {
   const { value: pizzas } = data;
 
   const state = pizzas.reduce(
-    (state, pizza) => {
-      state.price = handleMinAndMax(state.price, pizza.price);
-      state.weight = handleMinAndMax(state.weight, pizza.weight);
-      state.size = handleMinAndMax(state.size, pizza.size);
+    (pizzasState, pizza) => {
+      pizzasState.price = handleMinAndMax(pizzasState.price, pizza.price);
+      pizzasState.weight = handleMinAndMax(pizzasState.weight, pizza.weight);
+      pizzasState.size = handleMinAndMax(pizzasState.size, pizza.size);
 
       const description = pizza[`${language}_description`];
 
       descriptionToIngredients(description).forEach((ing) => {
-        const base = state.ingredients[ing] ?? 0;
-        state.ingredients[ing] = base + 1;
+        const base = pizzasState.ingredients[ing] ?? 0;
+        pizzasState.ingredients[ing] = base + 1;
       });
 
-      return state as PizzasState;
+      return pizzasState as PizzasState;
     },
     {
       ingredients: {},
