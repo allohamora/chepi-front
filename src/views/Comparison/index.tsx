@@ -88,12 +88,13 @@ const getColumns = (t: Translate, state: PizzasState) => {
       title: capitalize(t('table.title')),
       dataIndex: 'title',
       key: 'title',
-      render: (title: string, pizzaArgs: unknown) => {
-        const { link } = pizzaArgs as { link: string };
+      render: (title: string, pizza: Pizza) => {
+        const { link, size } = pizza;
 
         return (
           <a rel="noopener noreferrer" target="_blank" href={link}>
             {title}
+            {size !== null ? ` ${size}${t('table.cm')}` : ''}
           </a>
         );
       },
