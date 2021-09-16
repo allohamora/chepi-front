@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.1](https://github.com/Allohamora/chepi-front/compare/v2.1.0...v2.1.1) (2021-09-16)
+
+### Bug Fixes
+
+- add missed size in Comparison title ([d46488f](https://github.com/Allohamora/chepi-front/commits/d46488f20b37f8add2c4d0907d025b0b69b6fb72))
+
 ## [2.1.0](https://github.com/Allohamora/chepi-front/compare/v2.0.1...v2.1.0) (2021-09-15)
 
 ### Features
