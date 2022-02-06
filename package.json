@@ -5,7 +5,6 @@
   "author": "https://github.com/Allohamora",
   "private": true,
   "license": "MIT",
-  "main": "",
   "scripts": {
     "prepare": "husky install",
     "dev": "next dev",
