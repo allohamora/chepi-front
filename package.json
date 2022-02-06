@@ -11,9 +11,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "lint:fix": "npm run lint src test -- --fix",
+    "lint:fix": "eslint src test --fix",
     "csslint": "stylelint",
-    "csslint:fix": "npm run csslint \"**/*.tsx\" -- --fix",
+    "csslint:fix": "stylelint \"**/*.tsx\" --fix",
     "format": "prettier",
     "format:fix": "prettier --write .",
     "test": "jest",
@@ -77,14 +77,14 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "npm run lint -- --fix",
-      "npm run test -- --bail --findRelatedTests"
+      "eslint --fix",
+      "jest --bail --findRelatedTests"
     ],
     "*.tsx": [
-      "npm run csslint -- --fix"
+      "stylelint --fix"
     ],
     "*.{js,json,yml,md}": [
-      "npm run format -- --write"
+      "prettier --write"
     ]
   }
 }
