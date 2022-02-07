@@ -6,6 +6,7 @@
     "/": ["home"],
     "/404": ["not-found"],
     "/500": ["error"],
+    "/state": ["state"],
     "/search/[country]/[city]": ["pizza-card", "search-view"],
     "/comparison": ["comparison", "pizza-card"]
   }
