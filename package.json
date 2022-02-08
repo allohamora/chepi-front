@@ -1,6 +1,6 @@
 {
   "name": "chepi-front",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "Frontend for chepi",
   "author": "https://github.com/Allohamora",
   "private": true,
@@ -75,6 +75,11 @@
   "engines": {
     "node": ">=16.13.2",
     "npm": ">=8.1.2"
+  },
+  "standard-version": {
+    "skip": {
+      "tag": true
+    }
   },
   "lint-staged": {
     "*.{ts,tsx}": [
