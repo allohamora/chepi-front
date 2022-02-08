@@ -47,3 +47,17 @@ export const getPizzasByIds = async (ids: string[]) => {
 
   return data;
 };
+
+interface PizzasState {
+  timestamp: number;
+  count: number;
+}
+
+export const getPizzasState = async () => {
+  const { data } = await new HttpRequest(join(PIZZA_ENDPOINT, '/state'))
+    .get()
+    .returnType('json')
+    .request<PizzasState>();
+
+  return data;
+};

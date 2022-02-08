@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import useTranslation from 'next-translate/useTranslation';
+import Link from 'next/link';
 import { Typography } from 'antd';
 import { SearchOutlined, SettingFilled, PushpinOutlined } from '@ant-design/icons';
 import { SearchLayout } from 'src/layouts/Search';
@@ -14,7 +15,7 @@ export const Home: FC = () => {
 
   return (
     <SearchLayout>
-      <Seo title={capitalize(t('title'))} description={capitalize(t('description'))} />
+      <Seo title={capitalize(t('title'))} description={capitalize(t('title'))} />
 
       <Block>
         <Title level={3}>{capitalize(t('welcome'))}!</Title>
@@ -24,13 +25,16 @@ export const Home: FC = () => {
           />
         </Paragraph>
         <Paragraph>
-          {capitalize(t('for-search'))} <SearchOutlined />
+          {capitalize(t('to-search'))} <SearchOutlined />
         </Paragraph>
         <Paragraph>
-          {capitalize(t('for-comparison'))} <PushpinOutlined />
+          {capitalize(t('to-comparison'))} <PushpinOutlined />
         </Paragraph>
         <Paragraph>
-          {capitalize(t('for-settings'))} <SettingFilled />
+          {capitalize(t('to-settings'))} <SettingFilled />
+        </Paragraph>
+        <Paragraph>
+          {capitalize(t('to-state'))} <Link href="/state">{t('click-here')}</Link>
         </Paragraph>
         <Paragraph>{capitalize(t('good-luck'))}!</Paragraph>
       </Block>

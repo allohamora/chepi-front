@@ -33,6 +33,8 @@ module.exports = {
     'max-classes-per-file': ['error', 2],
 
     'react/jsx-props-no-spreading': 'off',
+    'react/function-component-definition': 'off',
+    'react/no-invalid-html-attribute': 'warn',
     'react/display-name': 'warn',
     'import/prefer-default-export': 'off',
     'react/require-default-props': 'off',
