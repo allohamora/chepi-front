@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.1](https://github.com/Allohamora/chepi-front/compare/v2.2.0...v2.2.1) (2022-02-09)
+
+### Bug Fixes
+
+- **i18n:** fix invalid translations in home page ([c418c16](https://github.com/Allohamora/chepi-front/commits/c418c16e2de3d3008bd0e97c59e8d90f19ea568c))
+
 ## [2.2.0](https://github.com/Allohamora/chepi-front/compare/v2.1.1...v2.2.0) (2022-02-08)
 
 ### Features
