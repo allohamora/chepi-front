@@ -2,6 +2,11 @@
   "search": {
     "placeholder": "пошук"
   },
+  "nav": {
+    "stats": "статистика",
+    "comparison": "порівняння",
+    "settings": "налаштування"
+  },
   "settings": {
     "title": "налаштування",
     "language": {

@@ -1,7 +1,0 @@
-{
-  "isLoading": "DB state is loading",
-  "isError": "Error during DB state loading",
-  "title": "DB state",
-  "timestamp": "creation date",
-  "count": "pizzas count"
-}

@@ -33,12 +33,12 @@ export const Search: FC = () => {
 
   const sortOptions = [
     { text: capitalize(t('sort.no-sort')), value: null },
-    { text: capitalize(t('sort.price-asc')), value: { target: 'price', cause: 'asc' } },
-    { text: capitalize(t('sort.price-desc')), value: { target: 'price', cause: 'desc' } },
-    { text: capitalize(t('sort.size-asc')), value: { target: 'size', cause: 'asc' } },
-    { text: capitalize(t('sort.size-desc')), value: { target: 'size', cause: 'desc' } },
-    { text: capitalize(t('sort.weight-asc')), value: { target: 'weight', cause: 'asc' } },
-    { text: capitalize(t('sort.weight-desc')), value: { target: 'weight', cause: 'desc' } },
+    { text: capitalize(t('sort.price-asc')), value: { target: 'price', direction: 'asc' } },
+    { text: capitalize(t('sort.price-desc')), value: { target: 'price', direction: 'desc' } },
+    { text: capitalize(t('sort.size-asc')), value: { target: 'size', direction: 'asc' } },
+    { text: capitalize(t('sort.size-desc')), value: { target: 'size', direction: 'desc' } },
+    { text: capitalize(t('sort.weight-asc')), value: { target: 'weight', direction: 'asc' } },
+    { text: capitalize(t('sort.weight-desc')), value: { target: 'weight', direction: 'desc' } },
   ] as const;
 
   const sortChangeHandler = (newSort: number) => {
