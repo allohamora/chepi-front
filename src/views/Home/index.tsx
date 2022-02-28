@@ -1,8 +1,7 @@
 import { FC } from 'react';
 import useTranslation from 'next-translate/useTranslation';
-import Link from 'next/link';
 import { Typography } from 'antd';
-import { SearchOutlined, SettingFilled, PushpinOutlined } from '@ant-design/icons';
+import { SearchOutlined, SettingOutlined, PushpinOutlined, RiseOutlined } from '@ant-design/icons';
 import { SearchLayout } from 'src/layouts/Search';
 import { capitalize } from 'src/utils/string';
 import { Seo } from 'src/components/Seo';
@@ -31,10 +30,10 @@ export const Home: FC = () => {
           {capitalize(t('to-comparison'))} <PushpinOutlined />
         </Paragraph>
         <Paragraph>
-          {capitalize(t('to-settings'))} <SettingFilled />
+          {capitalize(t('to-settings'))} <SettingOutlined />
         </Paragraph>
         <Paragraph>
-          {capitalize(t('to-state'))} <Link href="/state">{t('click-here')}</Link>
+          {capitalize(t('to-stats'))} <RiseOutlined />
         </Paragraph>
         <Paragraph>{capitalize(t('good-luck'))}!</Paragraph>
       </Block>
