@@ -11,6 +11,6 @@ export const StateContainer = styled(Container)`
   justify-content: center;
 
   & > * {
-    margin-right: 20px;
+    margin-right: 30px;
   }
 `;

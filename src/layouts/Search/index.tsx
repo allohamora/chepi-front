@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
 import { Col, Row, Space, Input, Select, Button, Drawer, Typography } from 'antd';
-import { SettingFilled, PushpinOutlined } from '@ant-design/icons';
+import { SettingOutlined, PushpinOutlined, RiseOutlined } from '@ant-design/icons';
 import { image } from 'src/utils/path';
 import { Config, useConfig } from 'src/providers/ConfigProvider';
 import { useRouter } from 'next/dist/client/router';
@@ -90,6 +90,7 @@ export const SearchLayout: FC = ({ children }) => {
   const searchChangeHandler = (e: ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value);
 
   const openComparison = () => router.push('/comparison');
+  const openStats = () => router.push('/stats');
 
   const openSettings = () => setSettingsVisible(true);
   const closeSettings = () => setSettingsVisible(false);
@@ -136,11 +137,14 @@ export const SearchLayout: FC = ({ children }) => {
           <NavCol xs={12} sm={{ offset: 2, span: 4 }}>
             <Row justify="end">
               <Space>
+                <Button onClick={openStats} title="hello">
+                  <RiseOutlined />
+                </Button>
                 <Button onClick={openComparison}>
                   <PushpinOutlined />
                 </Button>
                 <Button onClick={openSettings}>
-                  <SettingFilled />
+                  <SettingOutlined />
                 </Button>
               </Space>
             </Row>

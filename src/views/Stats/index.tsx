@@ -7,7 +7,7 @@ import { useQuery } from 'react-query';
 import { Seo } from 'src/components/Seo';
 import { SearchLayout } from 'src/layouts/Search';
 import { keys } from 'src/lib/react-query';
-import { getPizzasState } from 'src/services/pizza';
+import { getPizzasStats } from 'src/services/pizza';
 import { Lang } from 'src/services/pizza/types';
 import { getLongDateString, timestampToDate } from 'src/utils/date';
 import { StateContainer, StateTitle } from './style';
@@ -23,9 +23,9 @@ const createWithContainers = (t: Translate) => (children: ReactNode) => {
   );
 };
 
-export const State: FC = () => {
-  const { t, lang } = useTranslation('state');
-  const { isLoading, isError, data } = useQuery(keys.pizzasState, getPizzasState);
+export const Stats: FC = () => {
+  const { t, lang } = useTranslation('stats');
+  const { isLoading, isError, data } = useQuery(keys.pizzasStats, getPizzasStats);
 
   const withContainers = createWithContainers(t);
 
@@ -41,8 +41,8 @@ export const State: FC = () => {
     <>
       <Statistic
         prefix={<CalendarOutlined />}
-        title={t('timestamp')}
-        value={getLongDateString(timestampToDate(data.timestamp), lang as Lang)}
+        title={t('updatedAt')}
+        value={getLongDateString(timestampToDate(data.updatedAt), lang as Lang)}
       />
       <Statistic prefix={<FileOutlined />} title={t('count')} value={data.count} />
     </>,

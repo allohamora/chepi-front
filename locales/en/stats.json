@@ -1,0 +1,7 @@
+{
+  "isLoading": "Stats is loading",
+  "isError": "Error during stats loading",
+  "title": "Stats",
+  "updatedAt": "update date",
+  "count": "number of pizzas"
+}

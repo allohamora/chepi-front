@@ -48,16 +48,16 @@ export const getPizzasByIds = async (ids: string[]) => {
   return data;
 };
 
-interface PizzasState {
-  timestamp: number;
+interface PizzasStats {
+  updatedAt: number;
   count: number;
 }
 
-export const getPizzasState = async () => {
-  const { data } = await new HttpRequest(join(PIZZA_ENDPOINT, '/state'))
+export const getPizzasStats = async () => {
+  const { data } = await new HttpRequest(join(PIZZA_ENDPOINT, '/stats'))
     .get()
     .returnType('json')
-    .request<PizzasState>();
+    .request<PizzasStats>();
 
   return data;
 };
