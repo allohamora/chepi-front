@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/Allohamora/chepi-front/compare/v2.2.1...v3.0.0) (2022-02-28)
+
+### Features
+
+- add stats description to home page ([76a9772](https://github.com/Allohamora/chepi-front/commits/76a9772d1da8ff7b57f801c7debb52019d020387))
+- add titles for nav ([34f7bb2](https://github.com/Allohamora/chepi-front/commits/34f7bb251c81ee8f225dafa66d65ea712a5cceeb))
+
+### Bug Fixes
+
+- fix orderBy ([d09696e](https://github.com/Allohamora/chepi-front/commits/d09696e0c692a911564a264d5a41ef5c9581b16f))
+- migrate from state to stats ([efafe52](https://github.com/Allohamora/chepi-front/commits/efafe52bde1f60f98a428de79bfbcbd5028078b2))
+
 ### [2.2.1](https://github.com/Allohamora/chepi-front/compare/v2.2.0...v2.2.1) (2022-02-09)
 
 ### Bug Fixes
