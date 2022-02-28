@@ -137,13 +137,13 @@ export const SearchLayout: FC = ({ children }) => {
           <NavCol xs={12} sm={{ offset: 2, span: 4 }}>
             <Row justify="end">
               <Space>
-                <Button onClick={openStats} title="hello">
+                <Button onClick={openStats} title={t('nav.stats')}>
                   <RiseOutlined />
                 </Button>
-                <Button onClick={openComparison}>
+                <Button onClick={openComparison} title={t('nav.comparison')}>
                   <PushpinOutlined />
                 </Button>
-                <Button onClick={openSettings}>
+                <Button onClick={openSettings} title={t('nav.settings')}>
                   <SettingOutlined />
                 </Button>
               </Space>
