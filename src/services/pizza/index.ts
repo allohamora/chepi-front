@@ -13,7 +13,7 @@ export interface GetPizzasOptions {
   offset?: number;
   orderBy?: {
     target: 'weight' | 'size' | 'price';
-    cause: 'asc' | 'desc';
+    direction: 'asc' | 'desc';
   } | null;
 }
 
