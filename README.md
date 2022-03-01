@@ -1,6 +1,6 @@
 # Chepi-front
 
-Front/ui for cheppi.
+front-end for chepi
 
 ## Links
 

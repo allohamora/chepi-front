@@ -1,7 +1,7 @@
 {
   "name": "chepi-front",
   "version": "3.0.0",
-  "description": "Frontend for chepi",
+  "description": "front-end for chepi",
   "author": "https://github.com/Allohamora",
   "private": true,
   "license": "MIT",
