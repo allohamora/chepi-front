@@ -2,7 +2,7 @@
   "name": "chepi-front",
   "version": "3.0.0",
   "description": "front-end for chepi",
-  "author": "https://github.com/Allohamora",
+  "author": "https://github.com/allohamora",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -65,13 +65,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Allohamora/chepi-front.git"
+    "url": "git+https://github.com/allohamora/chepi-front.git"
   },
   "keywords": [],
   "bugs": {
-    "url": "https://github.com/Allohamora/chepi-front/issues"
+    "url": "https://github.com/allohamora/chepi-front/issues"
   },
-  "homepage": "https://github.com/Allohamora/chepi-front#readme",
+  "homepage": "https://github.com/allohamora/chepi-front#readme",
   "engines": {
     "node": ">=16.13.2",
     "npm": ">=8.1.2"
