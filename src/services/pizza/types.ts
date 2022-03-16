@@ -7,6 +7,19 @@ export type County = typeof supportedCountries[number];
 export const supportedCities = ['chernivtsi'] as const;
 export type City = typeof supportedCities[number];
 
+type Title = `${Lang}_title`;
+type Description = `${Lang}_description`;
+
+export type HistoryOfChangesWatchKey = Title | Description | 'image' | 'price' | 'weight';
+export type HistoryOfChangesValue = string | number | undefined;
+
+export interface Change {
+  key: HistoryOfChangesWatchKey;
+  old?: HistoryOfChangesValue;
+  new?: HistoryOfChangesValue;
+  detectedAt: number;
+}
+
 interface BasePizza {
   id: string;
   link: string; // http://pizza.com/buy-pizza/:id
@@ -17,12 +30,9 @@ interface BasePizza {
   weight: number | null; // 400g
   country: County;
   city: City;
+  historyOfChanges?: Change[];
 }
 
-type TranslatedPizzaTitles = `${Lang}_title`;
-type TranslatedPizzaDescription = `${Lang}_description`;
-
-export type Pizza = BasePizza &
-  {
-    [key in TranslatedPizzaTitles | TranslatedPizzaDescription]: string;
-  };
+export type Pizza = BasePizza & {
+  [key in Title | Description]: string;
+};
