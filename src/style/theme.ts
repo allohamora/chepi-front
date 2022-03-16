@@ -4,6 +4,7 @@ const colors = {
   white: '#ffffff',
   black: 'rgba(0, 0, 0, .85)',
   semiBlack: 'rgba(0, 0, 0, .45)',
+  weakGray: 'rgba(0, 0, 0, .014)',
   bold: '#2c3e50',
 } as const;
 export type Color = keyof typeof colors;

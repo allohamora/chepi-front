@@ -7,5 +7,11 @@
   "weight": "weight",
   "gram": "gram",
   "grn": "grn",
-  "cm": "cm"
+  "cm": "cm",
+  "action": {
+    "delete-from-comparison": "delete from comparison",
+    "add-to-comparison": "add to comparison",
+    "more-info": "more info",
+    "buy": "buy"
+  }
 }

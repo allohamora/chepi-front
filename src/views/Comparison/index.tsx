@@ -14,7 +14,7 @@ import { unique } from 'src/utils/array';
 import { Seo } from 'src/components/Seo';
 import { compareTwoStrings } from 'string-similarity';
 import { DeleteOutlined, ProfileOutlined, ShoppingOutlined } from '@ant-design/icons';
-import { Actions, Buttons, StyledTable } from './style';
+import { Actions, Buttons, StyledTable, Title } from './style';
 
 const COMPARE_LIMIT = 0.85;
 
@@ -110,10 +110,10 @@ const getColumns = (t: Translate, state: PizzasState, deletePizza: (id: string) 
         const { link, size } = pizza;
 
         return (
-          <a rel="noopener noreferrer" target="_blank" href={link}>
+          <Title rel="noopener noreferrer" target="_blank" href={link}>
             {title}
             {size !== null ? ` ${size} ${t('table.cm')}` : ''}
-          </a>
+          </Title>
         );
       },
     },

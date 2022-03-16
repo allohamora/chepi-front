@@ -1,13 +1,13 @@
 import { FC } from 'react';
 import useTranslation from 'next-translate/useTranslation';
+import Link from 'next/link';
 import { Pizza } from 'src/services/pizza/types';
-import { Card, Typography, Table, Image } from 'antd';
+import { Card, Typography, Image, Row } from 'antd';
 import { useConfig } from 'src/providers/ConfigProvider';
-import { ShoppingOutlined } from '@ant-design/icons';
+import { ProfileOutlined, ShoppingOutlined } from '@ant-design/icons';
 import { capitalize } from 'src/utils/string';
 import { useComparison } from 'src/providers/ComparisonProvider';
-import { numberOrNone } from 'src/utils/number';
-import { StyledCard, PushinIcon } from './style';
+import { StyledCard, PushinIcon, Property } from './style';
 
 const CLICK_IGNORE = 'click-ignore';
 
@@ -30,26 +30,6 @@ export const PizzaCard: FC<PizzaCardProps> = ({ pizza, className }) => {
   const title = capitalize(pizza[`${language}_title`]);
   const descripton = capitalize(pizza[`${language}_description`]);
 
-  const columns = [
-    {
-      title: `${capitalize(t('size'))} (${t('cm')})`,
-      dataIndex: 'size',
-      key: 'size',
-    },
-    {
-      title: `${capitalize(t('price'))} (${t('grn')})`,
-      dataIndex: 'price',
-      key: 'price',
-    },
-    {
-      title: `${capitalize(t('weight'))} (${t('gram')})`,
-      dataIndex: 'weight',
-      key: 'weight',
-    },
-  ];
-
-  const data = [{ key: 0, price: numberOrNone(price), size: numberOrNone(size), weight: numberOrNone(weight) }];
-
   const togglePushin = (pizzaId: string) => () => {
     if (pizzasIds[pizzaId]) {
       return removePizzas(pizzaId);
@@ -65,20 +45,43 @@ export const PizzaCard: FC<PizzaCardProps> = ({ pizza, className }) => {
       actions={[
         <PushinIcon
           className={CLICK_IGNORE}
-          key="pushin"
+          key="add-to-comparison"
           onClick={togglePushin(pizza.id)}
           inCompareList={pizzasIds[pizza.id]}
+          title={pizzasIds[pizza.id] ? t('action.delete-from-comparison') : t('action.add-to-comparison')}
         />,
-        <ShoppingOutlined className={CLICK_IGNORE} key="shopping" onClick={() => window.open(pizza.link)} />,
+        <Link key="more-info" href={`/pizza/${pizza.id}`}>
+          <a href={`/pizza/${pizza.id}`} title={t('action.more-info')} rel="noopener noreferrer" target="_blank">
+            <ProfileOutlined />
+          </a>
+        </Link>,
+        <a key="buy" href={pizza.link} title={t('action.buy')} rel="noopener noreferrer" target="_blank">
+          <ShoppingOutlined />
+        </a>,
       ]}
       hoverable
     >
       <Meta
-        title={`${title}${size !== null ? ` ${size}${t('cm')}` : ''}`}
+        title={
+          <Link href={pizza.link}>
+            <a href={pizza.link} rel="noopener noreferrer" target="_blank">
+              {title} {size !== null ? ` ${size} ${t('cm')}` : ''}
+            </a>
+          </Link>
+        }
         description={
           <>
             <Paragraph>{capitalize(descripton)}</Paragraph>
-            <Table bordered columns={columns} dataSource={data} pagination={false} />
+            <Row justify="space-around">
+              <Property>
+                {price} {t('grn')}
+              </Property>
+              {weight && (
+                <Property>
+                  {weight} {t('gram')}
+                </Property>
+              )}
+            </Row>
           </>
         }
       />

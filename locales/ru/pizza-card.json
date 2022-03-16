@@ -7,5 +7,11 @@
   "weight": "вес",
   "gram": "грамм",
   "grn": "грн",
-  "cm": "см"
+  "cm": "см",
+  "action": {
+    "delete-from-comparison": "удалить из сравнения",
+    "add-to-comparison": "добавить к сравнению",
+    "more-info": "больше информации",
+    "buy": "купить"
+  }
 }
