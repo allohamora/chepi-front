@@ -1,3 +1,4 @@
+import { NotFoundException } from 'src/exceptions/not-found.exception';
 import { join } from 'src/utils/url';
 import { config } from '../config';
 import { HttpRequest } from '../http';
@@ -58,6 +59,25 @@ export const getPizzasStats = async () => {
     .get()
     .returnType('json')
     .request<PizzasStats>();
+
+  return data;
+};
+
+export const getPizzaById = async (id: string) => {
+  const { data, status } = await new HttpRequest(join(PIZZA_ENDPOINT, `?id=${id}`))
+    .get()
+    .returnType('json')
+    .request<{ value: Pizza }>();
+
+  if (status === 404) {
+    throw new NotFoundException(`Pizza not found`);
+  }
+
+  return data.value;
+};
+
+export const getPizzaIds = async () => {
+  const { data } = await new HttpRequest(join(PIZZA_ENDPOINT, '/ids')).get().returnType('json').request<string[]>();
 
   return data;
 };

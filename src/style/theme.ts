@@ -1,6 +1,7 @@
 const colors = {
   primary: 'var(--ant-primary-6)',
   success: 'var(--ant-success-color)',
+  danger: 'var(--ant-error-color)',
   white: '#ffffff',
   black: 'rgba(0, 0, 0, .85)',
   semiBlack: 'rgba(0, 0, 0, .45)',
@@ -24,9 +25,11 @@ const fontWeight = {
 export type FontWeight = keyof typeof fontWeight;
 
 const fontSize = {
-  16: '16px',
-  20: '20px',
   14: '14px',
+  16: '16px',
+  18: '18px',
+  20: '20px',
+  24: '24px',
 };
 export type FontSize = keyof typeof fontSize;
 

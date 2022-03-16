@@ -84,10 +84,10 @@ export const PushinIcon = styled(PushpinOutlined, { shouldForwardProp: (prop) =>
     p.inCompareList &&
     `
     &&& {
-      color: var(--ant-success-color);
+      color: ${color('primary')(p)};
 
       :hover {
-        color: var(--ant-error-color);
+        color: ${color('danger')(p)};
       }
     }
   `}

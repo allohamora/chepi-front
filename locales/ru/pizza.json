@@ -1,0 +1,20 @@
+{
+  "error": "произошла ошибка",
+  "loading": "загрузка",
+  "uah": "грн",
+  "gram": "грамм",
+  "cm": "см",
+  "delete-from-comparison": "удалить из сравнения",
+  "add-to-comparison": "добавить к сравнению",
+  "buy": "купить",
+  "where-sell": "где продается",
+  "history-of-changes": "история изменений",
+  "from": "с",
+  "to": "на",
+  "changed-title": "изменено название",
+  "changed-description": "изменено описание",
+  "changed-weight": "изменен вес",
+  "changed-price": "изменена цена",
+  "chernivtsi": "Черновцы",
+  "ukraine": "Украина"
+}

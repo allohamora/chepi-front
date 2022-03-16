@@ -8,6 +8,7 @@
     "/500": ["error"],
     "/stats": ["stats"],
     "/search/[country]/[city]": ["pizza-card", "search-view"],
-    "/comparison": ["comparison", "pizza-card"]
+    "/comparison": ["comparison", "pizza-card"],
+    "/pizza/[id]": ["pizza"]
   }
 }
