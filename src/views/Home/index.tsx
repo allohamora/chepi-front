@@ -35,6 +35,12 @@ export const Home: FC = () => {
         <Paragraph>
           {capitalize(t('to-stats'))} <RiseOutlined />
         </Paragraph>
+        <Paragraph>
+          {capitalize(t('translated-by'))}{' '}
+          <a rel="noopener noreferrer" href="https://translate.google.com" target="_blank">
+            Google Translate
+          </a>
+        </Paragraph>
         <Paragraph>{capitalize(t('good-luck'))}!</Paragraph>
       </Block>
     </SearchLayout>

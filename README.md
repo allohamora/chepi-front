@@ -46,3 +46,5 @@ docker-compose --profile production up
 # unit tests
 npm run test
 ```
+
+Powered by [Google Translate](https://translate.google.com)
