@@ -1,4 +1,4 @@
-import { Color, Media, Theme } from './theme';
+import { Color, FontSize, FontWeight, Media, Theme } from './theme';
 
 interface Props {
   theme: Theme;
@@ -10,3 +10,5 @@ export const media = {
 };
 
 export const color = (key: Color) => (p: Props) => p.theme.colors[key];
+export const fontWeight = (key: FontWeight) => (p: Props) => p.theme.fontWeight[key];
+export const fontSize = (key: FontSize) => (p: Props) => p.theme.fontSize[key];
