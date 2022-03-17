@@ -1,20 +1,13 @@
 {
-  "error": "an error has occurred",
-  "loading": "loading",
-  "uah": "uah",
-  "gram": "gram",
-  "cm": "cm",
   "delete-from-comparison": "delete from comparison",
   "add-to-comparison": "add to comparison",
-  "buy": "buy",
+  "original-language": "original language",
   "where-sell": "where sell",
   "history-of-changes": "history of changes",
   "from": "from",
   "to": "to",
   "changed-title": "changed name",
-  "changed-description": "changed description",
+  "changed-description": "changed ingredients",
   "changed-weight": "changed weight",
-  "changed-price": "changed price",
-  "chernivtsi": "Chernivtsi",
-  "ukraine": "Ukraine"
+  "changed-price": "changed price"
 }

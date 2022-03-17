@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
 import { Col, Row, Space, Input, Select, Button, Drawer, Typography } from 'antd';
-import { SettingOutlined, PushpinOutlined, RiseOutlined } from '@ant-design/icons';
 import { image } from 'src/utils/path';
 import { Config, useConfig } from 'src/providers/ConfigProvider';
 import { useRouter } from 'next/dist/client/router';
@@ -11,6 +10,7 @@ import { Translate } from 'next-translate';
 import { capitalize } from 'src/utils/string';
 import { CookieAlert } from 'src/components/CookieAlert';
 import { supportedCountries } from 'src/config/country';
+import { ComparisonIcon, SettingsIcon, StatsIcon } from 'src/components/Icon';
 import {
   Layout,
   Title,
@@ -30,7 +30,14 @@ const { Text } = Typography;
 const { Search } = Input;
 const { Option } = Select;
 
-const getOptionsSelects = (config: Config, t: Translate) =>
+interface TranslateContext {
+  t: Translate;
+  tLanguage: Translate;
+  tCity: Translate;
+  tCountry: Translate;
+}
+
+const getOptionsSelects = (config: Config, { t, tLanguage, tCity, tCountry }: TranslateContext) =>
   [
     {
       key: 'language',
@@ -39,15 +46,15 @@ const getOptionsSelects = (config: Config, t: Translate) =>
       options: [
         {
           value: 'en',
-          children: t('settings.language.options.en'),
+          children: tLanguage('en'),
         },
         {
           value: 'ru',
-          children: t('settings.language.options.ru'),
+          children: tLanguage('ru'),
         },
         {
           value: 'uk',
-          children: t('settings.language.options.uk'),
+          children: tLanguage('uk'),
         },
       ],
     },
@@ -57,7 +64,7 @@ const getOptionsSelects = (config: Config, t: Translate) =>
       value: config.country,
       options: Object.keys(supportedCountries).map((country) => ({
         value: country,
-        children: t(`settings.country.options.${country}`),
+        children: tCountry(country),
       })),
     },
     {
@@ -66,7 +73,7 @@ const getOptionsSelects = (config: Config, t: Translate) =>
       value: config.city,
       options: supportedCountries[config.country].cities.map((city) => ({
         value: city,
-        children: t(`settings.city.options.${city}`),
+        children: tCity(city),
       })),
     },
   ] as const;
@@ -79,6 +86,9 @@ export const SearchLayout: FC = ({ children }) => {
     query: { query, ...restQuery },
   } = router;
   const { t } = useTranslation('search-layout');
+  const { t: tLanguage } = useTranslation('language');
+  const { t: tCity } = useTranslation('city');
+  const { t: tCountry } = useTranslation('country');
   const [searchQuery, setSearchQuery] = useState(query);
 
   const searchHandler = (newQuery: string) =>
@@ -95,7 +105,7 @@ export const SearchLayout: FC = ({ children }) => {
   const openSettings = () => setSettingsVisible(true);
   const closeSettings = () => setSettingsVisible(false);
 
-  const optionsSelects = getOptionsSelects(config, t);
+  const optionsSelects = getOptionsSelects(config, { t, tCity, tCountry, tLanguage });
 
   useEffect(() => {
     if (typeof query === 'string' && query.length > 0) {
@@ -138,13 +148,13 @@ export const SearchLayout: FC = ({ children }) => {
             <Row justify="end">
               <Space>
                 <Button onClick={openStats} title={t('nav.stats')}>
-                  <RiseOutlined />
+                  <StatsIcon />
                 </Button>
                 <Button onClick={openComparison} title={t('nav.comparison')}>
-                  <PushpinOutlined />
+                  <ComparisonIcon />
                 </Button>
                 <Button onClick={openSettings} title={t('nav.settings')}>
-                  <SettingOutlined />
+                  <SettingsIcon />
                 </Button>
               </Space>
             </Row>

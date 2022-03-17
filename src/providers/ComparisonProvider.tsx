@@ -1,10 +1,12 @@
-import { FC, createContext, useContext, useState, useEffect } from 'react';
+import { FC, createContext, useContext, useState, useEffect, useMemo } from 'react';
+import { localStorageKeys } from 'src/config/localstorage';
 
 interface ComparisonState {
   pizzasIds: Record<string, boolean>;
-  addPizza: (pizzaId: string) => void;
+  addPizzas: (...ids: string[]) => void;
   removePizzas: (...ids: string[]) => void;
-  loading: boolean;
+  isInComparisonCheck: (id: string) => boolean;
+  isLoading: boolean;
 }
 
 const defaultState = {} as ComparisonState;
@@ -12,37 +14,45 @@ const ComparisonContext = createContext(defaultState);
 
 export const useComparison = () => useContext(ComparisonContext);
 
-const PIZZAS_IDS_LS_KEY = 'pizzasIds';
-
 export const ComparisonProvider: FC = ({ children }) => {
   const [pizzasIds, setPizzasIds] = useState<ComparisonState['pizzasIds']>({});
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const userPizzasIds = JSON.parse(localStorage.getItem(PIZZAS_IDS_LS_KEY) as string) ?? {};
+    const userPizzasIds = JSON.parse(localStorage.getItem(localStorageKeys.pizzasIds) as string) ?? {};
 
     setPizzasIds(userPizzasIds);
-    setLoading(false);
+    setIsLoading(false);
   }, []);
 
   useEffect(() => {
-    localStorage.setItem(PIZZAS_IDS_LS_KEY, JSON.stringify(pizzasIds));
+    localStorage.setItem(localStorageKeys.pizzasIds, JSON.stringify(pizzasIds));
   }, [pizzasIds]);
 
-  const addPizza = (pizzaId: string) => setPizzasIds({ ...pizzasIds, [pizzaId]: true });
-  const removePizzas = (...ids: string[]) => {
-    const newPizzasIds = { ...pizzasIds };
+  const addPizzas = (...ids: string[]) => {
+    const newPizzasIds = ids.reduce((state, id) => ({ ...state, [id]: true }), {});
 
-    ids.forEach((id) => {
-      delete newPizzasIds[id];
-    });
+    setPizzasIds({ ...pizzasIds, ...newPizzasIds });
+  };
+
+  const removePizzas = (...ids: string[]) => {
+    const newPizzasIds = ids.reduce(
+      (state, id) => {
+        delete state[id];
+
+        return state;
+      },
+      { ...pizzasIds },
+    );
 
     setPizzasIds(newPizzasIds);
   };
 
-  return (
-    <ComparisonContext.Provider value={{ pizzasIds, addPizza, removePizzas, loading }}>
-      {children}
-    </ComparisonContext.Provider>
-  );
+  const isInComparisonCheck = (id: string) => {
+    return pizzasIds[id];
+  };
+
+  const context = useMemo(() => ({ pizzasIds, addPizzas, removePizzas, isInComparisonCheck, isLoading }), [pizzasIds]);
+
+  return <ComparisonContext.Provider value={context}>{children}</ComparisonContext.Provider>;
 };

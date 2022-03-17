@@ -1,6 +1,16 @@
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 import { Space } from 'antd';
+import { LinkTitle } from 'src/components/LinkTitle';
+import { Value } from 'src/components/Value';
 import { color, fontSize, fontWeight } from 'src/style/helpers';
+
+export const contentStyle = css`
+  max-width: 90%;
+
+  margin-right: auto;
+  margin-left: auto;
+`;
 
 export const Container = styled.div`
   max-width: 500px;
@@ -16,21 +26,23 @@ export const MainContent = styled.div`
   text-align: center;
 `;
 
-export const Title = styled.a`
-  margin-top: 10px;
-  margin-bottom: 5px;
+export const Title = styled(LinkTitle)`
+  ${contentStyle}
 
-  color: ${color('primary')};
+  margin-top: 10px;
+  margin-bottom: 10px;
+
   font-size: ${fontSize(24)};
-  font-weight: ${fontWeight('bold')};
 `;
 
 export const Description = styled.p`
+  ${contentStyle}
+
+  margin-bottom: 10px;
+
   color: ${color('black')};
   font-size: ${fontSize(18)};
   font-weight: ${fontWeight('regular')};
-
-  margin-bottom: 0;
 `;
 
 export const Actions = styled(Space)`
@@ -39,41 +51,10 @@ export const Actions = styled(Space)`
   svg {
     font-size: ${fontSize(20)};
   }
-
-  button,
-  a {
-    padding: 0;
-    margin: 0;
-
-    cursor: pointer;
-
-    background-color: transparent;
-    border: none;
-    color: ${color('black')};
-
-    transition: color 0.3s;
-
-    &:hover {
-      color: ${color('primary')};
-    }
-  }
 `;
 
-export const PinAction = styled.button<{ isPinned: boolean }>`
-  && {
-    ${(p) => p.isPinned && `color: ${color('success')(p)};`}
-
-    &:hover {
-      ${(p) => p.isPinned && `color: ${color('danger')(p)};`}
-    }
-  }
-`;
-
-export const Property = styled.div`
-  margin-top: 5px;
-
+export const Property = styled(Value)`
   font-size: ${fontSize(14)};
-  font-weight: ${fontWeight('bold')};
 
   &:not(:first-of-type) {
     margin-left: 10px;

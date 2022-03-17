@@ -2,22 +2,9 @@
   "title": "Comparison",
   "description": "Comparison pinned pizzas",
   "comparison-empty": "nothing added for comparison",
-  "loading": "loading",
-  "error": "error during loading",
   "table": {
     "clear": "clear",
-    "title": "name",
-    "image": "image",
-    "description": "ingredients",
-    "price": "price",
-    "weight": "weight",
-    "size": "size",
-    "grn": "grn",
-    "gram": "gram",
-    "cm": "cm",
     "actions": "actions",
-    "delete": "delete",
-    "more-info": "more info",
-    "buy": "buy"
+    "delete": "delete"
   }
 }

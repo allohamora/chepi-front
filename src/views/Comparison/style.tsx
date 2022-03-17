@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { Space, Table } from 'antd';
-import { color, fontSize, fontWeight } from 'src/style/helpers';
+import { fontSize } from 'src/style/helpers';
 
 export const StyledTable = styled(Table)`
   margin-top: 10px;
@@ -30,24 +30,7 @@ export const Actions = styled(Space)`
     display: flex;
     justify-content: center;
     align-items: center;
-
-    padding: 0;
-
-    background-color: transparent;
-
-    color: ${color('semiBlack')};
-    border: none;
-
-    cursor: pointer;
-
-    &:hover {
-      color: ${color('primary')};
-    }
   }
-`;
-
-export const Title = styled.a`
-  font-weight: ${fontWeight('bold')};
 `;
 
 export const Buttons = styled.div`

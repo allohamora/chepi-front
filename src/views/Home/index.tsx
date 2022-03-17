@@ -1,10 +1,10 @@
 import { FC } from 'react';
 import useTranslation from 'next-translate/useTranslation';
 import { Typography } from 'antd';
-import { SearchOutlined, SettingOutlined, PushpinOutlined, RiseOutlined } from '@ant-design/icons';
 import { SearchLayout } from 'src/layouts/Search';
 import { capitalize } from 'src/utils/string';
 import { Seo } from 'src/components/Seo';
+import { ComparisonIcon, SearchIcon, SettingsIcon, StatsIcon } from 'src/components/Icon';
 import { Block } from './style';
 
 const { Title, Paragraph } = Typography;
@@ -24,20 +24,20 @@ export const Home: FC = () => {
           />
         </Paragraph>
         <Paragraph>
-          {capitalize(t('to-search'))} <SearchOutlined />
+          {capitalize(t('to-search'))} <SearchIcon />
         </Paragraph>
         <Paragraph>
-          {capitalize(t('to-comparison'))} <PushpinOutlined />
+          {capitalize(t('to-comparison'))} <ComparisonIcon />
         </Paragraph>
         <Paragraph>
-          {capitalize(t('to-settings'))} <SettingOutlined />
+          {capitalize(t('to-settings'))} <SettingsIcon />
         </Paragraph>
         <Paragraph>
-          {capitalize(t('to-stats'))} <RiseOutlined />
+          {capitalize(t('to-stats'))} <StatsIcon />
         </Paragraph>
         <Paragraph>
           {capitalize(t('translated-by'))}{' '}
-          <a rel="noopener noreferrer" href="https://translate.google.com" target="_blank">
+          <a rel="noopener noreferrer" target="_blank" href="https://translate.google.com">
             Google Translate
           </a>
         </Paragraph>

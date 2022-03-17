@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
-import { PushpinOutlined } from '@ant-design/icons';
 import { Card } from 'antd';
-import { color, fontSize, fontWeight } from 'src/style/helpers';
+import { color, fontSize } from 'src/style/helpers';
+import { Value } from '../Value';
 
 export const StyledCard = styled(Card)`
   display: flex;
@@ -58,7 +58,6 @@ export const StyledCard = styled(Card)`
     white-space: normal;
     width: 100%;
 
-    font-weight: ${fontWeight('bold')};
     font-size: ${fontSize(16)};
     text-align: center;
   }
@@ -70,25 +69,6 @@ export const StyledCard = styled(Card)`
   }
 `;
 
-export const Property = styled.div`
+export const Property = styled(Value)`
   margin-top: 10px;
-
-  font-weight: ${fontWeight('bold')};
-  color: ${color('bold')};
-`;
-
-export const PushinIcon = styled(PushpinOutlined, { shouldForwardProp: (prop) => prop !== 'inCompareList' })<{
-  inCompareList: boolean;
-}>`
-  ${(p) =>
-    p.inCompareList &&
-    `
-    &&& {
-      color: ${color('primary')(p)};
-
-      :hover {
-        color: ${color('danger')(p)};
-      }
-    }
-  `}
 `;
