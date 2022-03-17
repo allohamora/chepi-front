@@ -1,19 +1,18 @@
 {
   "title": "Comparison",
   "description": "Comparison pinned pizzas",
-  "comparison-empty": "nothing added for comparison",
-  "loading": "loading",
-  "error": "error during loading",
+  "comparison-empty": "nothing added in comparison list",
+  "clear-message": "Clear the list?",
+  "share": "share",
+  "copied": "link copied to clipboard",
+  "own": "own list",
+  "external": "external list",
+  "replace": "replace",
+  "replace-message": "replace your list with that?",
+  "replaced": "your list has been replaced",
   "table": {
-    "delete": "delete",
-    "title": "name",
-    "image": "image",
-    "description": "ingredients",
-    "price": "price",
-    "weight": "weight",
-    "size": "size",
-    "grn": "grn",
-    "gram": "gram",
-    "cm": "cm"
+    "clear": "clear",
+    "actions": "actions",
+    "delete": "delete"
   }
 }

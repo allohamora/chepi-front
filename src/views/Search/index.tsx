@@ -10,6 +10,7 @@ import { useRouter } from 'next/dist/client/router';
 import { PizzaCard } from 'src/components/PizzaCard';
 import { capitalize } from 'src/utils/string';
 import { Seo } from 'src/components/Seo';
+import { AlertStatus } from 'src/components/AlertStatus';
 import { PaginationContainer, SelectContainer } from './style';
 
 const PIZZAS_PER_PAGE = 20;
@@ -70,7 +71,7 @@ export const Search: FC = () => {
     return (
       <SearchLayout>
         {seo}
-        <Alert message={capitalize(`${t('pizza.fetch.loading')}...`)} type="info" showIcon />
+        <AlertStatus status="loading" />
       </SearchLayout>
     );
   }
@@ -79,7 +80,7 @@ export const Search: FC = () => {
     return (
       <SearchLayout>
         {seo}
-        <Alert message={capitalize(t('pizza.fetch.error'))} type="error" showIcon />
+        <AlertStatus status="error" />
       </SearchLayout>
     );
   }

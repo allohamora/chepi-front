@@ -2,12 +2,20 @@
   "locales": ["en", "ru", "uk"],
   "defaultLocale": "en",
   "pages": {
-    "*": ["search-layout", "cookie"],
+    "*": ["search-layout", "cookie", "city", "country", "language"],
     "/": ["home"],
     "/404": ["not-found"],
     "/500": ["error"],
-    "/stats": ["stats"],
-    "/search/[country]/[city]": ["pizza-card", "search-view"],
-    "/comparison": ["comparison", "pizza-card"]
+    "/stats": ["stats", "alert-status"],
+    "/search/[country]/[city]": [
+      "search-view",
+      "comparison-toggle-button",
+      "more-info-link",
+      "buy-link",
+      "value",
+      "alert-status"
+    ],
+    "/comparison": ["comparison", "value", "more-info-link", "buy-link", "property", "alert-status"],
+    "/pizza/[id]": ["pizza", "comparison-toggle-button", "more-info-link", "buy-link", "value", "alert-status"]
   }
 }

@@ -10,24 +10,13 @@
   "settings": {
     "title": "settings",
     "language": {
-      "title": "language",
-      "options": {
-        "en": "english",
-        "ru": "russian",
-        "uk": "ukranian"
-      }
+      "title": "language"
     },
     "country": {
-      "title": "country",
-      "options": {
-        "ukraine": "Ukraine"
-      }
+      "title": "country"
     },
     "city": {
-      "title": "city",
-      "options": {
-        "chernivtsi": "Chernivtsi"
-      }
+      "title": "city"
     }
   },
   "footer": {

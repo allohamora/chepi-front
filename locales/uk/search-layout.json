@@ -10,24 +10,13 @@
   "settings": {
     "title": "налаштування",
     "language": {
-      "title": "мова",
-      "options": {
-        "en": "англійська",
-        "ru": "російська",
-        "uk": "украінська"
-      }
+      "title": "мова"
     },
     "country": {
-      "title": "краіна",
-      "options": {
-        "ukraine": "Україна"
-      }
+      "title": "краіна"
     },
     "city": {
-      "title": "місто",
-      "options": {
-        "chernivtsi": "Чернівці"
-      }
+      "title": "місто"
     }
   },
   "footer": {

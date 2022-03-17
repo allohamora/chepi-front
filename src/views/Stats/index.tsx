@@ -10,12 +10,13 @@ import { keys } from 'src/lib/react-query';
 import { getPizzasStats } from 'src/services/pizza';
 import { Lang } from 'src/services/pizza/types';
 import { getLongDateString, timestampToDate } from 'src/utils/date';
+import { AlertStatus } from 'src/components/AlertStatus';
 import { StateContainer, StateTitle } from './style';
 
 const createWithContainers = (t: Translate) => (children: ReactNode) => {
   return (
     <SearchLayout>
-      <Seo title={t('title')} description="" />
+      <Seo title={t('title')} description={t('description')} />
       <StateTitle level={3}>{t('title')}</StateTitle>
 
       <StateContainer>{children}</StateContainer>
@@ -25,16 +26,17 @@ const createWithContainers = (t: Translate) => (children: ReactNode) => {
 
 export const Stats: FC = () => {
   const { t, lang } = useTranslation('stats');
+
   const { isLoading, isError, data } = useQuery(keys.pizzasStats, getPizzasStats);
 
   const withContainers = createWithContainers(t);
 
   if (isLoading || data === undefined) {
-    return withContainers(t('isLoading'));
+    return withContainers(<AlertStatus status="loading" />);
   }
 
   if (isError) {
-    return withContainers(t('isError'));
+    return withContainers(<AlertStatus status="error" />);
   }
 
   return withContainers(

@@ -11,10 +11,6 @@
     "weight-desc": "Weight descending"
   },
   "pizza": {
-    "fetch": {
-      "error": "error during loading",
-      "loading": "loading"
-    },
     "results-not-found": "no results found"
   }
 }

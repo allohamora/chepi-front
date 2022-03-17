@@ -1,4 +1,4 @@
-import { createContext, FC, useContext, useEffect, useState } from 'react';
+import { createContext, FC, useContext, useEffect, useMemo, useState } from 'react';
 import enLocale from 'antd/lib/locale/en_US';
 import ruLocale from 'antd/lib/locale/ru_RU';
 import ukLocale from 'antd/lib/locale/uk_UA';
@@ -72,8 +72,10 @@ export const ConfigProvider: FC = ({ children }) => {
 
   const changeKey = (key: keyof Config, value: Config[typeof key]) => setConfig({ ...config, [key]: value });
 
+  const context = useMemo(() => ({ config, changeKey }), [config]);
+
   return (
-    <ConfigContext.Provider value={{ config, changeKey }}>
+    <ConfigContext.Provider value={context}>
       <AntDesignConfigProvider locale={langToLocale[config.language]}>{children}</AntDesignConfigProvider>
     </ConfigContext.Provider>
   );
