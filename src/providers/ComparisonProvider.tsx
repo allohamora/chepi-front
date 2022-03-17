@@ -6,6 +6,7 @@ interface ComparisonState {
   addPizzas: (...ids: string[]) => void;
   removePizzas: (...ids: string[]) => void;
   isInComparisonCheck: (id: string) => boolean;
+  setPizzas: (...ids: string[]) => void;
   isLoading: boolean;
 }
 
@@ -52,7 +53,16 @@ export const ComparisonProvider: FC = ({ children }) => {
     return pizzasIds[id];
   };
 
-  const context = useMemo(() => ({ pizzasIds, addPizzas, removePizzas, isInComparisonCheck, isLoading }), [pizzasIds]);
+  const setPizzas = (...ids: string[]) => {
+    const newPizzasIds = ids.reduce((state, id) => ({ ...state, [id]: true }), {});
+
+    setPizzasIds(newPizzasIds);
+  };
+
+  const context = useMemo(
+    () => ({ pizzasIds, addPizzas, removePizzas, isInComparisonCheck, setPizzas, isLoading }),
+    [pizzasIds],
+  );
 
   return <ComparisonContext.Provider value={context}>{children}</ComparisonContext.Provider>;
 };

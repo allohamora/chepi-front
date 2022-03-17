@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Space, Table } from 'antd';
 import { actionWithBorder, ButtonAction } from 'src/components/Action';
-import { color, fontSize } from 'src/style/helpers';
+import { color, fontSize, fontWeight, media } from 'src/style/helpers';
 
 export const StyledTable = styled(Table)`
   margin-top: 10px;
@@ -46,7 +46,33 @@ export const DeleteButton = styled(ButtonAction)`
   }
 `;
 
+export const Head = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  ${media.down('md')} {
+    flex-flow: column wrap;
+    align-items: center;
+  }
+`;
+
+export const Type = styled.h5`
+  margin-left: 10px;
+  margin-bottom: 0;
+
+  font-size: ${fontSize(24)};
+  font-weight: ${fontWeight('bold')};
+
+  ${media.down('md')} {
+    margin-left: 0;
+  }
+`;
+
 export const Buttons = styled.div`
   display: flex;
   justify-content: right;
+
+  > *:not(:first-of-type) {
+    margin-left: 10px;
+  }
 `;

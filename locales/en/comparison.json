@@ -1,8 +1,15 @@
 {
   "title": "Comparison",
   "description": "Comparison pinned pizzas",
-  "comparison-empty": "nothing added for comparison",
-  "clear-message": "Clear comparison?",
+  "comparison-empty": "nothing added in comparison list",
+  "clear-message": "Clear the list?",
+  "share": "share",
+  "copied": "link copied to clipboard",
+  "own": "own list",
+  "external": "external list",
+  "replace": "replace",
+  "replace-message": "replace your list with that?",
+  "replaced": "your list has been replaced",
   "table": {
     "clear": "clear",
     "actions": "actions",
