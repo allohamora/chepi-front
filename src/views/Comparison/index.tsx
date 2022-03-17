@@ -1,6 +1,6 @@
 import { FC, useEffect } from 'react';
 import useTranslation from 'next-translate/useTranslation';
-import { Alert, Image, Tag, Button, TableProps } from 'antd';
+import { Alert, Image, Tag, Button, TableProps, Popconfirm } from 'antd';
 import { Translate } from 'next-translate';
 import { useQuery } from 'react-query';
 import { SearchLayout } from 'src/layouts/Search';
@@ -320,9 +320,11 @@ export const Comparison: FC = () => {
       {pizzas.length > 0 && (
         <>
           <Buttons>
-            <Button onClick={clearComparison} type="ghost" danger>
-              {capitalize(t('table.clear'))}
-            </Button>
+            <Popconfirm onConfirm={clearComparison} title={t('clear-message')}>
+              <Button type="ghost" danger>
+                {capitalize(t('table.clear'))}
+              </Button>
+            </Popconfirm>
           </Buttons>
 
           <StyledTable columns={tableColumns} dataSource={tableData} scroll={{ x: 0 }} pagination={false} bordered />

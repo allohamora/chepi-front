@@ -2,6 +2,7 @@
   "title": "Comparison",
   "description": "Comparison pinned pizzas",
   "comparison-empty": "nothing added for comparison",
+  "clear-message": "Clear comparison?",
   "table": {
     "clear": "clear",
     "actions": "actions",
