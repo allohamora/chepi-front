@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.1.0](https://github.com/allohamora/chepi-front/compare/v3.0.0...v3.1.0) (2022-03-17)
+
+### Features
+
+- add border buttons to pizza and comparison ([4b0afad](https://github.com/allohamora/chepi-front/commits/4b0afada18ed928dac4da0a887313718d0c65c12))
+- add comparison clear confirmation ([13b1e98](https://github.com/allohamora/chepi-front/commits/13b1e98274eca8a94fffd1b67e260e2bd0615a34))
+- add comparison share feature ([cce3b66](https://github.com/allohamora/chepi-front/commits/cce3b66c53bd10751542c2f5275e3a3920d52219))
+- add history of changes type ([1b017fb](https://github.com/allohamora/chepi-front/commits/1b017fbbec92c85909c5263f562c3f1d6c1f9004))
+- add pizza page ([10286cd](https://github.com/allohamora/chepi-front/commits/10286cd5d37948b2f34fe150433188dad0137748))
+- add powered by Google Tranlsate ([3c09ad9](https://github.com/allohamora/chepi-front/commits/3c09ad9c0bdd7fd2207459d44eb216abae85ddef))
+- improve comparison design ([398afbb](https://github.com/allohamora/chepi-front/commits/398afbbe3f7502e7f47028eebb200f642b38eafa))
+- improve pizza card design ([0f87d8b](https://github.com/allohamora/chepi-front/commits/0f87d8b03f705e5c1a25b0d35fa31b479e657305))
+
 ## [3.0.0](https://github.com/allohamora/chepi-front/compare/v2.2.1...v3.0.0) (2022-02-28)
 
 ### Features
