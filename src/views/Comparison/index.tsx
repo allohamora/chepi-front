@@ -17,9 +17,8 @@ import { createPriceText, createSizeText, createTitleText, createWeightText } fr
 import { LinkTitle } from 'src/components/LinkTitle';
 import { MoreInfoLink } from 'src/components/MoreInfoLink';
 import { BuyLink } from 'src/components/BuyLink';
-import { ButtonAction } from 'src/components/Action';
 import { DeleteIcon } from 'src/components/Icon';
-import { Actions, Buttons, StyledTable } from './style';
+import { Actions, Buttons, DeleteButton, StyledTable } from './style';
 
 const COMPARE_LIMIT = 0.85;
 
@@ -195,9 +194,9 @@ const getColumns = (
           <MoreInfoLink id={pizza.id} />
           <BuyLink href={pizza.link} />
 
-          <ButtonAction type="button" onClick={() => deletePizza(pizza.id)} title={t('table.delete')}>
+          <DeleteButton type="button" onClick={() => deletePizza(pizza.id)} title={t('table.delete')}>
             <DeleteIcon />
-          </ButtonAction>
+          </DeleteButton>
         </Actions>
       ),
     },
@@ -321,7 +320,7 @@ export const Comparison: FC = () => {
       {pizzas.length > 0 && (
         <>
           <Buttons>
-            <Button onClick={clearComparison} type="primary" danger>
+            <Button onClick={clearComparison} type="ghost" danger>
               {capitalize(t('table.clear'))}
             </Button>
           </Buttons>

@@ -4,6 +4,7 @@ import { Space } from 'antd';
 import { LinkTitle } from 'src/components/LinkTitle';
 import { Value } from 'src/components/Value';
 import { color, fontSize, fontWeight } from 'src/style/helpers';
+import { actionWithBorder } from 'src/components/Action';
 
 export const contentStyle = css`
   max-width: 90%;
@@ -46,7 +47,19 @@ export const Description = styled.p`
 `;
 
 export const Actions = styled(Space)`
-  margin-top: 10px;
+  margin-top: 15px;
+
+  a,
+  button {
+    ${actionWithBorder}
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 40px;
+    width: 40px;
+  }
 
   svg {
     font-size: ${fontSize(20)};

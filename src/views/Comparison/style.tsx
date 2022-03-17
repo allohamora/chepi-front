@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { Space, Table } from 'antd';
-import { fontSize } from 'src/style/helpers';
+import { actionWithBorder, ButtonAction } from 'src/components/Action';
+import { color, fontSize } from 'src/style/helpers';
 
 export const StyledTable = styled(Table)`
   margin-top: 10px;
@@ -27,9 +28,21 @@ export const Actions = styled(Space)`
 
   a,
   button {
+    ${actionWithBorder}
+
     display: flex;
     justify-content: center;
     align-items: center;
+
+    height: 30px;
+    width: 30px;
+  }
+`;
+
+export const DeleteButton = styled(ButtonAction)`
+  &&:hover {
+    color: ${color('danger')};
+    border-color: ${color('danger')};
   }
 `;
 

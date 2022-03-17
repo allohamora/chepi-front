@@ -6,10 +6,14 @@ export const Container = styled(ButtonAction)<{ isInComparison: boolean }>`
   ${(p) =>
     p.isInComparison &&
     `
-    color: ${color('success')(p)};
+    && {
+      color: ${color('success')(p)};
+      border-color: ${color('success')(p)};
     
-    &:hover {
-      color: ${color('danger')(p)};
+      &:hover {
+        color: ${color('danger')(p)};
+        border-color: ${color('danger')(p)}
+      }
     }
   `}
 `;

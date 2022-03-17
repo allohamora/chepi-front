@@ -5,6 +5,7 @@ const colors = {
   white: '#ffffff',
   black: 'rgba(0, 0, 0, .85)',
   semiBlack: 'rgba(0, 0, 0, .45)',
+  gray: '#d9d9d9',
   weakGray: 'rgba(0, 0, 0, .014)',
   bold: '#2c3e50',
 } as const;
