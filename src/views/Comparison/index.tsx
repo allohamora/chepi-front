@@ -7,24 +7,24 @@ import { ComparisonContent } from './ComparisonContent';
 export const Comparison: FC = () => {
   const router = useRouter();
   const {
-    query: { isUrl, ...query },
+    query: { isExternal, ids: queryIds },
   } = router;
   const comparison = useComparison();
   const {
     config: { language },
   } = useConfig();
 
-  const queryPizzasIds = Object.keys(query);
-  const isUrlVariant = isUrl === '1';
+  const queryPizzasIds = (typeof queryIds === 'string' ? [queryIds] : queryIds) ?? [];
+  const isExternalVariant = isExternal === '1';
 
   const urlRemovePizzas = (...ids: string[]) => {
     const newIds = queryPizzasIds.filter((id) => !ids.includes(id));
-    const urlSearchParams = new URLSearchParams([['isUrl', '1'], ...newIds.map((id) => [id, '1'])]);
+    const urlSearchParams = new URLSearchParams([['isExternal', '1'], ...newIds.map((id) => ['ids', id])]);
 
     router.replace(`${language}/comparison?${urlSearchParams.toString()}`);
   };
 
-  if (isUrlVariant) {
+  if (isExternalVariant) {
     return <ComparisonContent pizzasIds={queryPizzasIds} removePizzas={urlRemovePizzas} isReady type="external" />;
   }
 

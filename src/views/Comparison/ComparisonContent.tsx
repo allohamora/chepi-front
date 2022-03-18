@@ -96,7 +96,7 @@ export const ComparisonContent: FC<Props> = ({ pizzasIds, removePizzas, isReady,
   };
 
   const shareHandler = async () => {
-    const searchParams = new URLSearchParams([['isUrl', '1'], ...pizzasIds.map((id) => [id, '1'])]);
+    const searchParams = new URLSearchParams([['isExternal', '1'], ...pizzasIds.map((id) => ['ids', id])]);
     const query = searchParams.toString();
 
     await navigator.clipboard.writeText(join(basePath, `${language}/comparison?${query}`));
