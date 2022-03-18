@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.1](https://github.com/allohamora/chepi-front/compare/v3.1.0...v3.1.1) (2022-03-18)
+
+### Bug Fixes
+
+- add language to comparison share url ([66b66f2](https://github.com/allohamora/chepi-front/commits/66b66f214a169e9092ab9f60ff576b87f39db200))
+- fix pizza seo title and description ([9f9eaaa](https://github.com/allohamora/chepi-front/commits/9f9eaaa12395fa953be6f75dd3d2b7f1e80eb28a))
+- normalize comparison query ids ([cf5b6d6](https://github.com/allohamora/chepi-front/commits/cf5b6d669be53fb500d8390904b9842a0df72b20))
+
 ## [3.1.0](https://github.com/allohamora/chepi-front/compare/v3.0.0...v3.1.0) (2022-03-17)
 
 ### Features
