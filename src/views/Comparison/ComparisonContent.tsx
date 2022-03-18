@@ -99,7 +99,7 @@ export const ComparisonContent: FC<Props> = ({ pizzasIds, removePizzas, isReady,
     const searchParams = new URLSearchParams([['isUrl', '1'], ...pizzasIds.map((id) => [id, '1'])]);
     const query = searchParams.toString();
 
-    await navigator.clipboard.writeText(join(basePath, `/comparison?${query}`));
+    await navigator.clipboard.writeText(join(basePath, `${language}/comparison?${query}`));
 
     notification.open({
       message: t('copied'),
