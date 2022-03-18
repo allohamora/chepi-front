@@ -40,10 +40,12 @@ export const Pizza: FC = () => {
   const titleKey = `${lang as Lang}_title` as const;
   const title = data?.[titleKey];
 
+  const titleText = createTitleText(title as string, data?.size ?? null, tValue('cm'));
+
   const descriptionKey = `${lang as Lang}_description` as const;
   const description = data?.[descriptionKey];
 
-  const seo = <Seo title={title ?? t('loading')} description={description ?? t('loading')} />;
+  const seo = <Seo title={titleText ?? t('loading')} description={description ?? t('loading')} />;
 
   if (isLoading) {
     return (
@@ -68,7 +70,7 @@ export const Pizza: FC = () => {
     );
   }
 
-  const { country, city, lang: pizzaLang, image, link, price, size, weight, historyOfChanges } = data as PizzaType;
+  const { country, city, lang: pizzaLang, image, link, price, weight, historyOfChanges } = data as PizzaType;
 
   const getChangeTitle = (key: string) => {
     if (key === titleKey) {
@@ -98,7 +100,6 @@ export const Pizza: FC = () => {
         detectedAt: change.detectedAt,
       })) ?? [];
 
-  const titleText = createTitleText(title as string, size, tValue('cm'));
   const weightText = createWeightText(weight, tValue('gram'));
   const pirceText = createPriceText(price, tValue('uah'));
 
