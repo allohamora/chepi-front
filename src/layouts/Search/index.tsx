@@ -99,7 +99,7 @@ export const SearchLayout: FC = ({ children }) => {
 
   const searchChangeHandler = (e: ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value);
 
-  const openComparison = () => router.push('/comparison');
+  const openComparison = () => router.push('/comparison/own');
   const openStats = () => router.push('/stats');
 
   const openSettings = () => setSettingsVisible(true);

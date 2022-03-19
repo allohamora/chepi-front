@@ -1,6 +1,6 @@
 import { Translate } from 'next-translate';
 import { Lang, Pizza } from 'src/services/pizza/types';
-import { createPriceText, createSizeText, createWeightText } from 'src/utils/pizza';
+import { createPriceText, createSizeText, createWeightText, textOrPlaceholder } from 'src/utils/pizza';
 import { capitalize } from 'src/utils/string';
 
 export const getTableData = (pizzas: Pizza[], language: Lang, tValue: Translate) => {
@@ -17,9 +17,9 @@ export const getTableData = (pizzas: Pizza[], language: Lang, tValue: Translate)
       description,
       image,
       link,
-      priceText: price === null ? '-' : createPriceText(price, tValue('uah')),
-      weightText: weight === null ? '-' : createWeightText(weight, tValue('gram')),
-      sizeText: size === null ? '-' : createSizeText(size, tValue('cm')),
+      priceText: textOrPlaceholder(price, createPriceText(price, tValue('uah'))),
+      weightText: textOrPlaceholder(weight, createWeightText(weight, tValue('gram'))),
+      sizeText: textOrPlaceholder(size, createSizeText(size, tValue('cm'))),
       price,
       weight,
       size,

@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.2.0](https://github.com/allohamora/chepi-front/compare/v3.1.1...v3.2.0) (2022-03-19)
+
+### Features
+
+- add company name to pizza page ([4c16050](https://github.com/allohamora/chepi-front/commits/4c16050058c8a3535effe094ffdde85320fb36a1))
+- add history of changes styles ([eb91c5e](https://github.com/allohamora/chepi-front/commits/eb91c5ee72eaff61d281ab498ce73aba6b9f57fe))
+- add value for changed price and weight in pizza page ([71ab33e](https://github.com/allohamora/chepi-front/commits/71ab33e91aea4dcbb2fc936865d97ce3052e71e7))
+- improve comparison design ([0400ddd](https://github.com/allohamora/chepi-front/commits/0400ddd15024325dd8a4d280e8ee5742dfb4476b))
+
 ### [3.1.1](https://github.com/allohamora/chepi-front/compare/v3.1.0...v3.1.1) (2022-03-18)
 
 ### Bug Fixes

@@ -20,11 +20,13 @@ import { getTableData } from './table-data';
 import { getPizzasState } from './pizzas-state';
 import { Buttons, StyledTable, Head, Type } from './style';
 
+export type ComparisonType = 'own' | 'external';
+
 interface Props {
   pizzasIds: string[];
   removePizzas: (...ids: string[]) => unknown;
   isReady: boolean;
-  type: 'own' | 'external';
+  type: ComparisonType;
 }
 
 const COMPARISON_NOTIFICATION_CLASS = 'comparison-notification';
@@ -40,6 +42,7 @@ export const ComparisonContent: FC<Props> = ({ pizzasIds, removePizzas, isReady,
   const { setPizzas } = useComparison();
 
   const seo = <Seo title={t('title')} description={t('description')} />;
+  const title = <Type>{capitalize(t(type))}</Type>;
 
   const { isLoading, error, data } = useQuery([keys.pizzasByIds, pizzasIds], () => getPizzasByIds(pizzasIds), {
     keepPreviousData: true,
@@ -62,10 +65,11 @@ export const ComparisonContent: FC<Props> = ({ pizzasIds, removePizzas, isReady,
     }
   }, [data?.value]);
 
-  if (isLoading || data === undefined) {
+  if (isLoading || data === undefined || isReady === false) {
     return (
       <SearchLayout>
         {seo}
+        {title}
         <AlertStatus status="loading" />
       </SearchLayout>
     );
@@ -75,6 +79,7 @@ export const ComparisonContent: FC<Props> = ({ pizzasIds, removePizzas, isReady,
     return (
       <SearchLayout>
         {seo}
+        {title}
         <AlertStatus status="error" />
       </SearchLayout>
     );
@@ -96,10 +101,10 @@ export const ComparisonContent: FC<Props> = ({ pizzasIds, removePizzas, isReady,
   };
 
   const shareHandler = async () => {
-    const searchParams = new URLSearchParams([['isExternal', '1'], ...pizzasIds.map((id) => ['ids', id])]);
+    const searchParams = new URLSearchParams(pizzasIds.map((id) => ['ids', id]));
     const query = searchParams.toString();
 
-    await navigator.clipboard.writeText(join(basePath, `${language}/comparison?${query}`));
+    await navigator.clipboard.writeText(join(basePath, `${language}/comparison/external?${query}`));
 
     notification.open({
       message: t('copied'),
@@ -155,7 +160,7 @@ export const ComparisonContent: FC<Props> = ({ pizzasIds, removePizzas, isReady,
             `}
           />
           <Head>
-            <Type>{capitalize(t(type))}</Type>
+            {title}
 
             <Buttons>
               <Button onClick={shareHandler} type="ghost">
@@ -188,7 +193,12 @@ export const ComparisonContent: FC<Props> = ({ pizzasIds, removePizzas, isReady,
         </>
       )}
 
-      {pizzas.length === 0 && <Alert message={capitalize(t('comparison-empty'))} type="info" showIcon />}
+      {pizzas.length === 0 && (
+        <>
+          {title}
+          <Alert message={capitalize(t('comparison-empty'))} type="info" showIcon />
+        </>
+      )}
     </SearchLayout>
   );
 };

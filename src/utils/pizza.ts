@@ -13,3 +13,13 @@ export const createPriceText = (price: number | null, uah: string) => {
 export const createWeightText = (weight: number | null, gram: string) => {
   return `${weight} ${gram}`;
 };
+
+const PLACEHOLDER = '-';
+
+export const textOrPlaceholder = (value: unknown | null | undefined, text: string) => {
+  if (value === null || value === undefined) {
+    return PLACEHOLDER;
+  }
+
+  return text;
+};

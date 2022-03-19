@@ -10,11 +10,21 @@ import { keys } from 'src/lib/react-query';
 import { getPizzaById } from 'src/services/pizza';
 import { Lang, Pizza as PizzaType } from 'src/services/pizza/types';
 import { capitalize } from 'src/utils/string';
-import { createPriceText, createTitleText, createWeightText } from 'src/utils/pizza';
+import { createPriceText, createTitleText, createWeightText, textOrPlaceholder } from 'src/utils/pizza';
 import { ComparisonToggleButton } from 'src/components/ComparisonToggleButton';
 import { BuyLink } from 'src/components/BuyLink';
 import { AlertStatus } from 'src/components/AlertStatus';
-import { Actions, Container, Description, HistoryList, MainContent, Property, Title } from './style';
+import {
+  Actions,
+  ChangedValue,
+  Company,
+  Container,
+  Description,
+  HistoryList,
+  MainContent,
+  Property,
+  Title,
+} from './style';
 import { ContentBlock } from './ContentBlock';
 
 const formatDate = (timestamp: number, lang: Lang) => {
@@ -72,6 +82,8 @@ export const Pizza: FC = () => {
 
   const { country, city, lang: pizzaLang, image, link, price, weight, historyOfChanges } = data as PizzaType;
 
+  const company = data?.[`${lang as Lang}_company`] as string;
+
   const getChangeTitle = (key: string) => {
     if (key === titleKey) {
       return 'title';
@@ -95,13 +107,24 @@ export const Pizza: FC = () => {
       })
       .map((change) => ({
         title: getChangeTitle(change.key),
-        from: change.old ?? '-',
-        to: change.new ?? '-',
+        from: change.old,
+        to: change.new,
         detectedAt: change.detectedAt,
       })) ?? [];
 
   const weightText = createWeightText(weight, tValue('gram'));
   const pirceText = createPriceText(price, tValue('uah'));
+
+  const transfromValue = (historyTitle: string, value?: string | number | null) => {
+    switch (historyTitle) {
+      case 'weight':
+        return <ChangedValue isValue>{textOrPlaceholder(value, `${value} ${tValue('gram')}`)}</ChangedValue>;
+      case 'price':
+        return <ChangedValue isValue>{textOrPlaceholder(value, `${value} ${tValue('uah')}`)}</ChangedValue>;
+      default:
+        return <ChangedValue>{textOrPlaceholder(value, `${value}`)}</ChangedValue>;
+    }
+  };
 
   return (
     <SearchLayout>
@@ -126,7 +149,13 @@ export const Pizza: FC = () => {
         </MainContent>
 
         <ContentBlock title={capitalize(t('where-sell'))}>
-          {capitalize(tCity(city))}, {capitalize(tCountry(country))}
+          <Company href={link} rel="noopener noreferrer" target="_blank">
+            {capitalize(company)}
+          </Company>
+          {', '}
+          {capitalize(tCity(city))}
+          {', '}
+          {capitalize(tCountry(country))}
         </ContentBlock>
 
         <ContentBlock title={capitalize(t('original-language'))}>{capitalize(tLanguage(pizzaLang))}</ContentBlock>
@@ -136,8 +165,8 @@ export const Pizza: FC = () => {
             <HistoryList>
               {history.map(({ detectedAt, from, to, title: historyTitle }) => (
                 <li key={JSON.stringify({ detectedAt, from, to, historyTitle })}>
-                  {formatDate(detectedAt, lang as Lang)}: {t(`changed-${historyTitle}`)} {t('from')} {`"${from}"`}{' '}
-                  {t('to')} {`"${to}"`}
+                  {formatDate(detectedAt, lang as Lang)}: {t(`changed-${historyTitle}`)} {t('from')}{' '}
+                  {transfromValue(historyTitle, from)} {t('to')} {transfromValue(historyTitle, to)}
                 </li>
               ))}
             </HistoryList>

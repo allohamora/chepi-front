@@ -4,8 +4,6 @@ import { actionWithBorder, ButtonAction } from 'src/components/Action';
 import { color, fontSize, fontWeight, media } from 'src/style/helpers';
 
 export const StyledTable = styled(Table)`
-  margin-top: 10px;
-
   .ant-tag {
     margin-top: 5px;
   }
@@ -58,7 +56,7 @@ export const Head = styled.div`
 
 export const Type = styled.h5`
   margin-left: 10px;
-  margin-bottom: 0;
+  margin-bottom: 10px;
 
   font-size: ${fontSize(24)};
   font-weight: ${fontWeight('bold')};

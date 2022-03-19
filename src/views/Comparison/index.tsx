@@ -1,31 +1,54 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useComparison } from 'src/providers/ComparisonProvider';
-import { useConfig } from 'src/providers/ConfigProvider';
-import { ComparisonContent } from './ComparisonContent';
+import { ComparisonContent, ComparisonType } from './ComparisonContent';
+
+const locationIds = () => {
+  if (typeof window === 'undefined') {
+    return [];
+  }
+
+  return new URLSearchParams(window.location.search).getAll('ids');
+};
+
+export const COMPARISON_TYPES: ComparisonType[] = ['own', 'external'];
 
 export const Comparison: FC = () => {
   const router = useRouter();
   const {
-    query: { isExternal, ids: queryIds },
+    query: { ids: queryIds },
   } = router;
   const comparison = useComparison();
-  const {
-    config: { language },
-  } = useConfig();
+
+  const [isQueryReady, setIsQueryReady] = useState(false);
+
+  useEffect(() => {
+    setIsQueryReady(true);
+  }, []);
+
+  const type = router.query.type as ComparisonType;
 
   const queryPizzasIds = (typeof queryIds === 'string' ? [queryIds] : queryIds) ?? [];
-  const isExternalVariant = isExternal === '1';
+  const isExternalVariant = type === 'external';
 
   const urlRemovePizzas = (...ids: string[]) => {
     const newIds = queryPizzasIds.filter((id) => !ids.includes(id));
-    const urlSearchParams = new URLSearchParams([['isExternal', '1'], ...newIds.map((id) => ['ids', id])]);
+    const urlSearchParams = new URLSearchParams(newIds.map((id) => ['ids', id]));
 
-    router.replace(`${language}/comparison?${urlSearchParams.toString()}`);
+    router.replace(`/comparison/external?${urlSearchParams.toString()}`);
   };
 
   if (isExternalVariant) {
-    return <ComparisonContent pizzasIds={queryPizzasIds} removePizzas={urlRemovePizzas} isReady type="external" />;
+    const isIdsLoadded = locationIds().length === queryPizzasIds.length;
+
+    return (
+      <ComparisonContent
+        pizzasIds={queryPizzasIds}
+        removePizzas={urlRemovePizzas}
+        isReady={isIdsLoadded && isQueryReady}
+        type="external"
+      />
+    );
   }
 
   return (
