@@ -10,6 +10,9 @@ export const pizza: Pizza = {
   price: 129,
   size: 30,
   weight: 1000,
+  uk_company: 'Тест',
+  ru_company: 'Тест',
+  en_company: 'Test',
   uk_title: 'Смачна',
   uk_description: 'Сир, помідори',
   ru_title: 'Вкусная',
@@ -29,7 +32,7 @@ export const pizzaWithHistory: Pizza = {
     },
     {
       key: 'weight',
-      new: 1000,
+      new: null,
       old: 1100,
       detectedAt: new Date().getTime() / 1000,
     },

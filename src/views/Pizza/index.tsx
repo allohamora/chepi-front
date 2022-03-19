@@ -10,11 +10,21 @@ import { keys } from 'src/lib/react-query';
 import { getPizzaById } from 'src/services/pizza';
 import { Lang, Pizza as PizzaType } from 'src/services/pizza/types';
 import { capitalize } from 'src/utils/string';
-import { createPriceText, createTitleText, createWeightText } from 'src/utils/pizza';
+import { createPriceText, createTitleText, createWeightText, textOrPlaceholder } from 'src/utils/pizza';
 import { ComparisonToggleButton } from 'src/components/ComparisonToggleButton';
 import { BuyLink } from 'src/components/BuyLink';
 import { AlertStatus } from 'src/components/AlertStatus';
-import { Actions, Company, Container, Description, HistoryList, MainContent, Property, Title } from './style';
+import {
+  Actions,
+  ChangedValue,
+  Company,
+  Container,
+  Description,
+  HistoryList,
+  MainContent,
+  Property,
+  Title,
+} from './style';
 import { ContentBlock } from './ContentBlock';
 
 const formatDate = (timestamp: number, lang: Lang) => {
@@ -97,22 +107,22 @@ export const Pizza: FC = () => {
       })
       .map((change) => ({
         title: getChangeTitle(change.key),
-        from: change.old ?? '-',
-        to: change.new ?? '-',
+        from: change.old,
+        to: change.new,
         detectedAt: change.detectedAt,
       })) ?? [];
 
   const weightText = createWeightText(weight, tValue('gram'));
   const pirceText = createPriceText(price, tValue('uah'));
 
-  const transfromValue = (historyTitle: string, value: string | number | null) => {
+  const transfromValue = (historyTitle: string, value?: string | number | null) => {
     switch (historyTitle) {
       case 'weight':
-        return `"${value} ${tValue('gram')}"`;
+        return <ChangedValue isValue>{textOrPlaceholder(value, `${value} ${tValue('gram')}`)}</ChangedValue>;
       case 'price':
-        return `"${value} ${tValue('uah')}"`;
+        return <ChangedValue isValue>{textOrPlaceholder(value, `${value} ${tValue('uah')}`)}</ChangedValue>;
       default:
-        return `"${value}"`;
+        return <ChangedValue>{textOrPlaceholder(value, `${value}`)}</ChangedValue>;
     }
   };
 

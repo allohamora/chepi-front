@@ -12,7 +12,7 @@ type Description = `${Lang}_description`;
 type Company = `${Lang}_company`;
 
 export type HistoryOfChangesWatchKey = Title | Description | 'image' | 'price' | 'weight';
-export type HistoryOfChangesValue = string | number | undefined;
+export type HistoryOfChangesValue = string | number | undefined | null;
 
 export interface Change {
   key: HistoryOfChangesWatchKey;
