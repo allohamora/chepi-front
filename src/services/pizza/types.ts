@@ -9,6 +9,7 @@ export type City = typeof supportedCities[number];
 
 type Title = `${Lang}_title`;
 type Description = `${Lang}_description`;
+type Company = `${Lang}_company`;
 
 export type HistoryOfChangesWatchKey = Title | Description | 'image' | 'price' | 'weight';
 export type HistoryOfChangesValue = string | number | undefined;
@@ -35,4 +36,6 @@ interface BasePizza {
 
 export type Pizza = BasePizza & {
   [key in Title | Description]: string;
+} & {
+  [key in Company]: string;
 };

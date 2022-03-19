@@ -83,3 +83,7 @@ export const HistoryList = styled.ul`
     color: ${color('bold')};
   }
 `;
+
+export const Company = styled.a`
+  font-weight: ${fontWeight('bold')};
+`;

@@ -14,7 +14,7 @@ import { createPriceText, createTitleText, createWeightText } from 'src/utils/pi
 import { ComparisonToggleButton } from 'src/components/ComparisonToggleButton';
 import { BuyLink } from 'src/components/BuyLink';
 import { AlertStatus } from 'src/components/AlertStatus';
-import { Actions, Container, Description, HistoryList, MainContent, Property, Title } from './style';
+import { Actions, Company, Container, Description, HistoryList, MainContent, Property, Title } from './style';
 import { ContentBlock } from './ContentBlock';
 
 const formatDate = (timestamp: number, lang: Lang) => {
@@ -72,6 +72,8 @@ export const Pizza: FC = () => {
 
   const { country, city, lang: pizzaLang, image, link, price, weight, historyOfChanges } = data as PizzaType;
 
+  const company = data?.[`${lang as Lang}_company`] as string;
+
   const getChangeTitle = (key: string) => {
     if (key === titleKey) {
       return 'title';
@@ -126,7 +128,13 @@ export const Pizza: FC = () => {
         </MainContent>
 
         <ContentBlock title={capitalize(t('where-sell'))}>
-          {capitalize(tCity(city))}, {capitalize(tCountry(country))}
+          <Company href={link} rel="noopener noreferrer" target="_blank">
+            {capitalize(company)}
+          </Company>
+          {', '}
+          {capitalize(tCity(city))}
+          {', '}
+          {capitalize(tCountry(country))}
         </ContentBlock>
 
         <ContentBlock title={capitalize(t('original-language'))}>{capitalize(tLanguage(pizzaLang))}</ContentBlock>
