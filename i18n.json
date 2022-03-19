@@ -15,7 +15,7 @@
       "value",
       "alert-status"
     ],
-    "/comparison": ["comparison", "value", "more-info-link", "buy-link", "property", "alert-status"],
+    "/comparison/[type]": ["comparison", "value", "more-info-link", "buy-link", "property", "alert-status"],
     "/pizza/[id]": ["pizza", "comparison-toggle-button", "more-info-link", "buy-link", "value", "alert-status"]
   }
 }
