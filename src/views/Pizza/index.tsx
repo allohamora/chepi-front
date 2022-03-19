@@ -105,6 +105,17 @@ export const Pizza: FC = () => {
   const weightText = createWeightText(weight, tValue('gram'));
   const pirceText = createPriceText(price, tValue('uah'));
 
+  const transfromValue = (historyTitle: string, value: string | number | null) => {
+    switch (historyTitle) {
+      case 'weight':
+        return `"${value} ${tValue('gram')}"`;
+      case 'price':
+        return `"${value} ${tValue('uah')}"`;
+      default:
+        return `"${value}"`;
+    }
+  };
+
   return (
     <SearchLayout>
       {seo}
@@ -144,8 +155,8 @@ export const Pizza: FC = () => {
             <HistoryList>
               {history.map(({ detectedAt, from, to, title: historyTitle }) => (
                 <li key={JSON.stringify({ detectedAt, from, to, historyTitle })}>
-                  {formatDate(detectedAt, lang as Lang)}: {t(`changed-${historyTitle}`)} {t('from')} {`"${from}"`}{' '}
-                  {t('to')} {`"${to}"`}
+                  {formatDate(detectedAt, lang as Lang)}: {t(`changed-${historyTitle}`)} {t('from')}{' '}
+                  {transfromValue(historyTitle, from)} {t('to')} {transfromValue(historyTitle, to)}
                 </li>
               ))}
             </HistoryList>
