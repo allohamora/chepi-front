@@ -123,10 +123,10 @@ export const Search: FC = () => {
 
           <PaginationContainer>
             <Pagination
-              defaultCurrent={1}
+              pageSize={PIZZAS_PER_PAGE}
+              current={!pageQuery ? 1 : Number(pageQuery)}
               total={total}
               onChange={paginatonChangeHandler}
-              defaultPageSize={PIZZAS_PER_PAGE}
               showQuickJumper={false}
               showSizeChanger={false}
               responsive

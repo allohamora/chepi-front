@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.4](https://github.com/allohamora/chepi-front/compare/v4.0.3...v4.0.4) (2022-12-03)
+
+### Bug Fixes
+
+- fix page pagination on Search page ([3886bda](https://github.com/allohamora/chepi-front/commits/3886bda1c67487ecdc90ca11d5302d1e9fd414a6))
+
 ### [4.0.3](https://github.com/allohamora/chepi-front/compare/v4.0.2...v4.0.3) (2022-12-03)
 
 ### Bug Fixes
