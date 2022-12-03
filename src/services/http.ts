@@ -8,6 +8,7 @@ interface Options {
   method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
   returnType: 'text' | 'json';
   url: string;
+  query?: string;
   body?: string;
 }
 
@@ -58,6 +59,28 @@ abstract class RequestBuilder {
     return this;
   }
 
+  public query<T extends Record<string | number | symbol, string | number | boolean | string[]>>(params: T) {
+    if (Object.keys(params).length === 0) return this;
+
+    const searchParams = new URLSearchParams();
+
+    for (const [key, value] of Object.entries(params)) {
+      if (Array.isArray(value)) {
+        value.forEach((subValue) => searchParams.append(key, subValue));
+      } else {
+        searchParams.append(key, value.toString());
+      }
+    }
+
+    const query = searchParams.toString();
+
+    if (query.trim().length) {
+      this.options.query = query;
+    }
+
+    return this;
+  }
+
   public contentType(contentType: Headers['Content-Type']) {
     this.header('Content-Type', contentType);
     return this;
@@ -84,14 +107,16 @@ abstract class RequestBuilder {
 
 class FetchRequestBuilder extends RequestBuilder {
   public async request<T>() {
-    const { url, method, body, returnType } = this.options;
+    const { url, query, method, body, returnType } = this.options;
     const fetchOptions: RequestInit = {
       method,
       body,
       headers: this.headers as unknown as Record<string, string>,
     };
 
-    const res = await fetch(url, fetchOptions);
+    const fullUrl = query ? `${url}?${query}` : url;
+
+    const res = await fetch(fullUrl, fetchOptions);
     const data = (await res[returnType]()) as T;
 
     return { data, ok: res.ok, status: res.status };

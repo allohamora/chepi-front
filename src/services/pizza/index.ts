@@ -1,83 +1,109 @@
 import { NotFoundException } from 'src/exceptions/not-found.exception';
-import { join } from 'src/utils/url';
 import { config } from '../config';
 import { HttpRequest } from '../http';
 import { Pizza } from './types';
 
-const PIZZA_ENDPOINT = join(config.API_URL, '/pizza');
+const PIZZA_ENDPOINT = `${config.API_URL}/pizzas`;
 
-export interface GetPizzasOptions {
-  query: string;
-  city: Pizza['city'];
-  country: Pizza['country'];
-  limit?: number;
-  offset?: number;
-  orderBy?: {
-    target: 'weight' | 'size' | 'price';
-    direction: 'asc' | 'desc';
-  } | null;
+interface SuccessResponse<T> {
+  success: true;
+  data: T;
 }
 
-interface GetPizzasResponse {
-  value: Pizza[];
-  total: number;
+interface ErrorResponse {
+  success: false;
+  messages: string[];
+}
+
+interface MetaResponse<T> extends SuccessResponse<T> {
+  meta: { total: number; count: number };
+}
+
+type Response<T> = SuccessResponse<T> | ErrorResponse;
+type ResponseMany<T> = MetaResponse<T> | ErrorResponse;
+
+export interface GetPizzasOptions {
+  query?: string;
+  city?: Pizza['city'];
+  country?: Pizza['country'];
+  limit?: number;
+  offset?: number;
+  ids?: string[];
+  sort?: string;
+  fields?: string;
 }
 
 export const getPizzas = async (options: GetPizzasOptions) => {
   const { data } = await new HttpRequest(PIZZA_ENDPOINT)
-    .post()
-    .jsonBody(options)
+    .get()
+    .query({ ...options }) // fix ts issue: https://stackoverflow.com/questions/37006008/typescript-index-signature-is-missing-in-type
     .returnType('json')
-    .request<GetPizzasResponse>();
+    .request<ResponseMany<Pizza[]>>();
+
+  if (!data.success) {
+    throw new Error(data.messages.join('\n'));
+  }
 
   return data;
 };
 
-interface GetPizzasByIdsResult {
-  value: Pizza[];
-}
-
-export const getPizzasByIds = async (ids: string[]) => {
-  if (ids.length === 0) return { value: [] };
-
-  const { data } = await new HttpRequest(join(PIZZA_ENDPOINT, '/ids'))
-    .post()
-    .jsonBody({ ids })
-    .returnType('json')
-    .request<GetPizzasByIdsResult>();
-
-  return data;
-};
-
-interface PizzasStats {
+interface PizzaStats {
   updatedAt: number;
   count: number;
 }
 
-export const getPizzasStats = async () => {
-  const { data } = await new HttpRequest(join(PIZZA_ENDPOINT, '/stats'))
+export const getPizzaStats = async () => {
+  const { data: res } = await new HttpRequest(`${PIZZA_ENDPOINT}/stats`)
     .get()
     .returnType('json')
-    .request<PizzasStats>();
+    .request<Response<PizzaStats>>();
 
-  return data;
+  if (!res.success) {
+    throw new Error(res.messages.join('\n'));
+  }
+
+  return res.data;
 };
 
 export const getPizzaById = async (id: string) => {
-  const { data, status } = await new HttpRequest(join(PIZZA_ENDPOINT, `?id=${id}`))
+  const { data: res, status } = await new HttpRequest(`${PIZZA_ENDPOINT}/${id}`)
     .get()
     .returnType('json')
-    .request<{ value: Pizza }>();
+    .request<Response<Pizza>>();
 
   if (status === 404) {
     throw new NotFoundException(`Pizza not found`);
   }
 
-  return data.value;
+  if (!res.success) {
+    throw new Error(res.messages.join('\n'));
+  }
+
+  return res.data;
 };
 
 export const getPizzaIds = async () => {
-  const { data } = await new HttpRequest(join(PIZZA_ENDPOINT, '/ids')).get().returnType('json').request<string[]>();
+  const limit = 20;
 
-  return data;
+  const {
+    meta: { total, count },
+    data,
+  } = await getPizzas({ limit, fields: 'id' });
+  const ids = data.map(({ id }) => id);
+
+  if (total <= count) {
+    return ids;
+  }
+
+  let offset = count;
+
+  while (offset < total) {
+    offset += limit;
+
+    const { data: res } = await getPizzas({ limit, fields: 'id' });
+
+    ids.push(...res.map(({ id }) => id));
+  }
+
+  return ids;
 };
