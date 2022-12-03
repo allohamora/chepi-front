@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.2](https://github.com/allohamora/chepi-front/compare/v4.0.1...v4.0.2) (2022-12-03)
+
+### Bug Fixes
+
+- change API_URL in Dockerfile to correct ([21a21dd](https://github.com/allohamora/chepi-front/commits/21a21dd376744c69cabeeb539e71b12da74ca40b))
+
 ### [4.0.1](https://github.com/allohamora/chepi-front/compare/v4.0.0...v4.0.1) (2022-12-03)
 
 ### Bug Fixes
