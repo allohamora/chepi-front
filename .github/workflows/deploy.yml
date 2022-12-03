@@ -10,14 +10,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Login
-        uses: okteto/login@master
+        uses: okteto/context@latest
         with:
           token: ${{ secrets.OKTETO_TOKEN }}
 
-      - name: Create namespace
-        uses: okteto/namespace@master
+      - name: Activate Namespace
+        uses: okteto/namespace@latest
+        with:
+          namespace: allohamora
 
       - name: Deploy pipeline
-        uses: okteto/pipeline@master
+        uses: okteto/pipeline@latest
         with:
           name: chepi-front
