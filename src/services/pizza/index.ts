@@ -83,27 +83,11 @@ export const getPizzaById = async (id: string) => {
 };
 
 export const getPizzaIds = async () => {
-  const limit = 20;
-
   const {
-    meta: { total, count },
-    data,
-  } = await getPizzas({ limit, fields: 'id' });
-  const ids = data.map(({ id }) => id);
+    meta: { total },
+  } = await getPizzas({ limit: 1, fields: 'id' });
 
-  if (total <= count) {
-    return ids;
-  }
+  const { data } = await getPizzas({ limit: total, fields: 'id' });
 
-  let offset = count;
-
-  while (offset < total) {
-    offset += limit;
-
-    const { data: res } = await getPizzas({ limit, fields: 'id' });
-
-    ids.push(...res.map(({ id }) => id));
-  }
-
-  return ids;
+  return data.map(({ id }) => id);
 };
