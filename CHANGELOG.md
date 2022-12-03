@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.0.0](https://github.com/allohamora/chepi-front/compare/v3.2.0...v4.0.0) (2022-12-03)
+
+### Features
+
+- migrate to REST API ([d157e79](https://github.com/allohamora/chepi-front/commits/d157e7916ab6d86cd0857e18e2d2331c74ae03b0))
+
+### Bug Fixes
+
+- package.json issues ([a3930de](https://github.com/allohamora/chepi-front/commits/a3930de5b9bcfd9c4eca7647bd309c031824dfff))
+
 ## [3.2.0](https://github.com/allohamora/chepi-front/compare/v3.1.1...v3.2.0) (2022-03-19)
 
 ### Features
