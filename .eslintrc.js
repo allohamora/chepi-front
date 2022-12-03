@@ -31,6 +31,8 @@ module.exports = {
     'no-param-reassign': 'warn',
     '@typescript-eslint/ban-types': 'warn',
     'max-classes-per-file': ['error', 2],
+    'no-await-in-loop': 'warn',
+    'no-restricted-syntax': 'warn',
 
     'react/jsx-props-no-spreading': 'off',
     'react/function-component-definition': 'off',

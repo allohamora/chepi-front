@@ -7,7 +7,7 @@ import { useQuery } from 'react-query';
 import { Seo } from 'src/components/Seo';
 import { SearchLayout } from 'src/layouts/Search';
 import { keys } from 'src/lib/react-query';
-import { getPizzasStats } from 'src/services/pizza';
+import { getPizzaStats } from 'src/services/pizza';
 import { Lang } from 'src/services/pizza/types';
 import { getLongDateString, timestampToDate } from 'src/utils/date';
 import { AlertStatus } from 'src/components/AlertStatus';
@@ -27,7 +27,7 @@ const createWithContainers = (t: Translate) => (children: ReactNode) => {
 export const Stats: FC = () => {
   const { t, lang } = useTranslation('stats');
 
-  const { isLoading, isError, data } = useQuery(keys.pizzasStats, getPizzasStats);
+  const { isLoading, isError, data } = useQuery(keys.pizzasStats, getPizzaStats);
 
   const withContainers = createWithContainers(t);
 

@@ -48,15 +48,19 @@ export const Search: FC = () => {
 
   const { isLoading, data, error } = useQuery(
     [keys.pizzas, query, offset, sort],
-    () =>
-      getPizzas({
+    () => {
+      const order = sortOptions[sort].value;
+      const witSort = order ? { sort: `${order.target}:${order.direction}` } : undefined;
+
+      return getPizzas({
         city,
         country,
         query: query as string,
         offset,
         limit: PIZZAS_PER_PAGE,
-        orderBy: sortOptions[sort].value,
-      }),
+        ...witSort,
+      });
+    },
     { keepPreviousData: true },
   );
 
@@ -85,7 +89,10 @@ export const Search: FC = () => {
     );
   }
 
-  const { value, total } = data;
+  const {
+    data: value,
+    meta: { total },
+  } = data;
 
   const paginatonChangeHandler = (page: number) => {
     const finalPage = page === 1 ? undefined : page;

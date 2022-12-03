@@ -5,7 +5,7 @@ import { useQuery } from 'react-query';
 import { SearchLayout } from 'src/layouts/Search';
 import { keys } from 'src/lib/react-query';
 import { useConfig } from 'src/providers/ConfigProvider';
-import { getPizzasByIds } from 'src/services/pizza';
+import { getPizzas } from 'src/services/pizza';
 import { capitalize } from 'src/utils/string';
 import { unique } from 'src/utils/array';
 import { Seo } from 'src/components/Seo';
@@ -44,15 +44,19 @@ export const ComparisonContent: FC<Props> = ({ pizzasIds, removePizzas, isReady,
   const seo = <Seo title={t('title')} description={t('description')} />;
   const title = <Type>{capitalize(t(type))}</Type>;
 
-  const { isLoading, error, data } = useQuery([keys.pizzasByIds, pizzasIds], () => getPizzasByIds(pizzasIds), {
-    keepPreviousData: true,
-    enabled: isReady,
-  });
+  const { isLoading, error, data } = useQuery(
+    [keys.pizzasByIds, pizzasIds],
+    () => getPizzas({ ids: pizzasIds, limit: pizzasIds.length }),
+    {
+      keepPreviousData: true,
+      enabled: isReady,
+    },
+  );
 
   useEffect(() => {
     if (data === undefined) return;
 
-    const pizzas = data.value;
+    const pizzas = data.data;
 
     if (pizzas.length !== pizzasIds.length) {
       const invalid = unique(
@@ -63,7 +67,7 @@ export const ComparisonContent: FC<Props> = ({ pizzasIds, removePizzas, isReady,
       console.warn('some pizzas was not found', invalid);
       removePizzas(...invalid);
     }
-  }, [data?.value]);
+  }, [data?.data]);
 
   if (isLoading || data === undefined || isReady === false) {
     return (
@@ -85,7 +89,7 @@ export const ComparisonContent: FC<Props> = ({ pizzasIds, removePizzas, isReady,
     );
   }
 
-  const { value: pizzas } = data;
+  const { data: pizzas } = data;
 
   const state = getPizzasState(pizzas, language);
 
